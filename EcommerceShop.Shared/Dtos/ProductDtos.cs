@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EcommerceShop.Shared.Dtos
 {
-    class ProductDtos
+    public class ProductDtos
     {
         public int Id { get; set; }
         public string Name { get; set; }
