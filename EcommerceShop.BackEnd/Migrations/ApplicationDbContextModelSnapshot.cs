@@ -16,7 +16,7 @@ namespace EcommerceShop.BackEnd.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.7")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.Category", b =>
@@ -60,7 +60,7 @@ namespace EcommerceShop.BackEnd.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
