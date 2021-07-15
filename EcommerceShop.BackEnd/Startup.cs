@@ -3,10 +3,10 @@ using EcommerceShop.BackEnd.IdentityServer;
 using EcommerceShop.BackEnd.Models;
 using EcommerceShop.BackEnd.Security.Authorization.AdminRoleHandler;
 using EcommerceShop.BackEnd.Security.Authorization.Handlers;
+using EcommerceShop.BackEnd.Storage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,9 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using static IdentityServer4.IdentityServerConstants;
 
 namespace EcommerceShop.BackEnd
@@ -36,11 +34,12 @@ namespace EcommerceShop.BackEnd
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddTransient<IStorageService, FileStorageService>();
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                  .AddEntityFrameworkStores<ApplicationDbContext>()
                  .AddDefaultTokenProviders();
-            services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
