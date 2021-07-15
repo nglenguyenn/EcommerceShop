@@ -64,7 +64,7 @@ namespace EcommerceShop.BackEnd.Controllers
             {
                 return NotFound();
             }
-
+            product.Images = _storageService.GetFileUrl(product.Images);
             //var productdto = new ProductDto
             //{
             //    ProductId = product.ProductId,
