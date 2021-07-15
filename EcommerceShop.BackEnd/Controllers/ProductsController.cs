@@ -1,5 +1,7 @@
 ﻿using EcommerceShop.BackEnd.Data;
 using EcommerceShop.BackEnd.Models;
+using EcommerceShop.Shared.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,71 +22,93 @@ namespace EcommerceShop.BackEnd.Controllers
         {
             _context = context;
         }
-
         [HttpGet]
-        public ActionResult GetProducts()
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProduct()
         {
-            var items = _context.Products.ToList();
-            return Ok(items);
+            return await _context.Products
+                .Select(x => new ProductDto
+                {
+                    ProductId = x.ProductId,
+                    Name = x.Name,
+                    Description = x.Description,
+                    Price = x.Price,
+                    Images = x.Images
+                })
+                .ToListAsync();
         }
-        // GET: api/Products/5
+
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProduct(int id)
+        [AllowAnonymous]
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(z => z.Id == id);
+            var product = await _context.Products.FindAsync(id);
 
             if (product == null)
+            {
                 return NotFound();
-
-            return Ok(product);
-        }
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<IActionResult> CreateProduct([FromForm]Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                await _context.Products.AddAsync(product);
-                await _context.SaveChangesAsync();
-
-                return CreatedAtAction("GetProduct", new { product.Id }, product);
             }
 
-            return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
+            var productVm = new ProductDto
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                Images = product.Images
+            };
+
+            return productVm;
         }
 
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct([FromForm]int id, Product product)
+        public async Task<IActionResult> PutProduct(int id, ProductCreateRequest productCreateRequest)
         {
-            if (id != product.Id)
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(product).State = EntityState.Modified;
+            product.Name = productCreateRequest.Name;
+            product.Price = productCreateRequest.Price;
+            product.Description = productCreateRequest.Description;
+            product.Images = productCreateRequest.Images;
+            product.UpdatedDate = DateTime.Now.Date;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
-        // DELETE: api/Products/5
+
+        [HttpPost]
+        public async Task<ActionResult<ProductDto>> PostProduct(ProductCreateRequest productCreateRequest)
+        {
+            var product = new Product
+            {
+                Name = productCreateRequest.Name,
+                Description = productCreateRequest.Description,
+                Price = productCreateRequest.Price,
+                Images = productCreateRequest.Images,
+                CreatedDate = DateTime.Now.Date,
+                UpdatedDate = DateTime.Now.Date,
+                CategoryId = productCreateRequest.CategoryId
+            };
+
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetProduct", new { id = product.ProductId }, new ProductDto
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                Images = product.Images
+            });
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
@@ -98,11 +122,6 @@ namespace EcommerceShop.BackEnd.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-   
-        private bool ProductExists(int id)
-        {
-           return _context.Products.Any(e => e.Id == id);
         }
     }
 }

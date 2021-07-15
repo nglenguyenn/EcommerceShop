@@ -21,23 +21,25 @@ namespace EcommerceShop.BackEnd.Migrations
 
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("NameCategory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -49,20 +51,21 @@ namespace EcommerceShop.BackEnd.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Images")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
 
@@ -271,7 +274,7 @@ namespace EcommerceShop.BackEnd.Migrations
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.Product", b =>
                 {
                     b.HasOne("EcommerceShop.BackEnd.Models.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany("Product")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -332,7 +335,7 @@ namespace EcommerceShop.BackEnd.Migrations
 
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.Category", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

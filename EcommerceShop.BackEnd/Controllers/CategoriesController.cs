@@ -1,5 +1,8 @@
 ﻿using EcommerceShop.BackEnd.Data;
 using EcommerceShop.BackEnd.Models;
+using EcommerceShop.Shared.DTO;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace EcommerceShop.BackEnd.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class CategoriesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -18,16 +23,23 @@ namespace EcommerceShop.BackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/Categories
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategory()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories
+                .Select(x => new CategoryDto
+                {
+                    CategoryId = x.CategoryId,
+                    NameCategory = x.NameCategory,
+                    Description = x.Description
+                })
+                .ToListAsync();
         }
 
-        // GET: api/Categories/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        [AllowAnonymous]
+        public async Task<ActionResult<CategoryDto>> GetCategory(int id)
         {
             var category = await _context.Categories.FindAsync(id);
 
@@ -36,54 +48,53 @@ namespace EcommerceShop.BackEnd.Controllers
                 return NotFound();
             }
 
-            return category;
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Category>> CreateCategory(Category category)
-        {
-            if (ModelState.IsValid)
+            var categoryVm = new CategoryDto
             {
-                await _context.Categories.AddAsync(category);
-                await _context.SaveChangesAsync();
+                CategoryId = category.CategoryId,
+                NameCategory = category.NameCategory,
+                Description = category.Description
+            };
 
-                return CreatedAtAction("GetProduct", new { category.Id }, category);
-            }
-
-            return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
+            return categoryVm;
         }
 
-        // PUT: api/Categories/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(int id, Category category)
+        public async Task<IActionResult> PutCategory(int id, CategoryCreateRequest categoryCreateRequest)
         {
-            if (id != category.Id)
+            var category = await _context.Categories.FindAsync(id);
+
+            if (category == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            category.NameCategory = categoryCreateRequest.NameCategory;
+            category.Description = categoryCreateRequest.Description;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
-        // DELETE: api/Categories/5
+
+        [HttpPost]
+        public async Task<ActionResult<CategoryDto>> PostCategory(CategoryCreateRequest categoryCreateRequest)
+        {
+            var category = new Category
+            {
+                NameCategory = categoryCreateRequest.NameCategory,
+                Description = categoryCreateRequest.Description
+            };
+
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, new CategoryDto
+            {
+                NameCategory = category.NameCategory,
+                Description = category.Description
+            });
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
@@ -98,10 +109,6 @@ namespace EcommerceShop.BackEnd.Controllers
 
             return NoContent();
         }
-
-        private bool CategoryExists(int id)
-        {
-            return _context.Categories.Any(e => e.Id == id);
-        }
     }
 }
+
