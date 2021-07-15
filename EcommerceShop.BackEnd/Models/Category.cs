@@ -7,7 +7,7 @@ namespace EcommerceShop.BackEnd.Models
 {
     public class Category
     {
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public string NameCategory { get; set; }
         public string Description { get; set; }
         public ICollection<Product> Product { get; set; }

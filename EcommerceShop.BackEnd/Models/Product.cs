@@ -8,7 +8,7 @@ namespace EcommerceShop.BackEnd.Models
 {
     public class Product
     {
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         [Column(TypeName = "decimal")]
@@ -16,7 +16,7 @@ namespace EcommerceShop.BackEnd.Models
         public string Images { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public Category Category { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace EcommerceShop.Shared.DTO
 {
     public class CategoryDto
     {
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public string NameCategory { get; set; }
         public string Description { get; set; }
     }
