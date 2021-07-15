@@ -1716,5 +1716,12 @@
 		<None Include="wwwroot\Template\assets\js\masonry.pkgd.min.js" />
 		<None Include="wwwroot\Template\assets\js\npm.js" />
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.8" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\EcommerceShop.Shared\EcommerceShop.Shared.csproj" />
+	</ItemGroup>
 
 </Project>
