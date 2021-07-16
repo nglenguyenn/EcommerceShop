@@ -8,6 +8,6 @@ namespace EcommerceShop.CustomerSite.Services
 {
     public interface ICategoryApiClient
     {
-        Task<IList<CategoryDto>> GetCategory();
+        Task<IList<CategoryDto>> GetCategories();
     }
 }

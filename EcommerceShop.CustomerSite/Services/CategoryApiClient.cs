@@ -9,18 +9,19 @@ namespace EcommerceShop.CustomerSite.Services
 {
     public class CategoryApiClient : ICategoryApiClient
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _client;
 
-        public CategoryApiClient(IHttpClientFactory httpClientFactory)
+        public CategoryApiClient(HttpClient client)
         {
-            _httpClientFactory = httpClientFactory;
+            _client = client;
         }
 
-        public async Task<IList<CategoryDto>> GetCategory()
+        public async Task<IList<CategoryDto>> GetCategories()
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:44354/api/categories");
+            var response = await _client.GetAsync("api/categories");
+
             response.EnsureSuccessStatusCode();
+
             return await response.Content.ReadAsAsync<IList<CategoryDto>>();
         }
     }

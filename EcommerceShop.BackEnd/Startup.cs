@@ -32,6 +32,12 @@ namespace EcommerceShop.BackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var clientUrls = new Dictionary<string, string>
+            {
+                ["Mvc"] = Configuration["ClientUrl:Mvc"],
+                ["Swagger"] = Configuration["ClientUrl:Swagger"],
+                ["React"] = Configuration["ClientUrl:React"]
+            };
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -50,14 +56,16 @@ namespace EcommerceShop.BackEnd
             })
             .AddInMemoryIdentityResources(IdentityServerConfig.IdentityResources)
             .AddInMemoryApiScopes(IdentityServerConfig.ApiScopes)
-            .AddInMemoryClients(IdentityServerConfig.Clients)
+            .AddInMemoryClients(IdentityServerConfig.Clients(clientUrls))
             .AddAspNetIdentity<User>()
             .AddProfileService<CustomProfileService>()
             .AddDeveloperSigningCredential();
+
             services.ConfigureApplicationCookie(config =>
             {
                 config.LoginPath = "/CustomAuthentication/Login";
             });
+
             services.AddAuthentication()
                 .AddLocalApi("Bearer", option =>
                 {

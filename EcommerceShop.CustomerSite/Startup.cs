@@ -1,20 +1,24 @@
 using EcommerceShop.CustomerSite.Services;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EcommerceShop.CustomerSite
 {
     public class Startup
     {
+        private Dictionary<string, string> clientUrls;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,8 +29,11 @@ namespace EcommerceShop.CustomerSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            clientUrls = new Dictionary<string, string>
+            {
+                ["Backend"] = Configuration["ClientUrl:Backend"],
+            };
             services.AddHttpClient();
-            services.AddTransient<ICategoryApiClient, CategoryApiClient>();
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
@@ -35,22 +42,37 @@ namespace EcommerceShop.CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:44354";
+                    options.Authority = $"{clientUrls["Backend"]}";
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
+
                     options.ClientId = "mvc";
                     options.ClientSecret = "secret";
                     options.ResponseType = "code";
+
                     options.SaveTokens = true;
+
                     options.Scope.Add("openid");
                     options.Scope.Add("profile");
-                    options.Scope.Add("assignmentecommerce.api");
+                    options.Scope.Add("ecommerceshop.api");
+
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         NameClaimType = "name",
                         RoleClaimType = "role"
                     };
                 });
+            var configureClient = new Action<IServiceProvider, HttpClient>(async (provider, client) =>
+            {
+                var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+                var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+
+                client.BaseAddress = new Uri(Configuration["BackEndUrl"]);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            });
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpClient<ICategoryApiClient, CategoryApiClient>(configureClient);
+
             services.AddControllersWithViews();
         }
 

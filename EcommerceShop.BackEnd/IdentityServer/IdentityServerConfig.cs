@@ -20,7 +20,7 @@ namespace EcommerceShop.BackEnd.IdentityServer
                   new ApiScope("ecommerceshop.api", "Ecommerce Shop API")
              };
 
-        public static IEnumerable<Client> Clients =>
+        public static IEnumerable<Client> Clients(Dictionary<string, string> clientUrls) =>
             new List<Client>
             {
                 // machine to machine client
@@ -42,9 +42,9 @@ namespace EcommerceShop.BackEnd.IdentityServer
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44367/signin-oidc" },
+                    RedirectUris = { $"{clientUrls["Mvc"]}/signin-oidc" },
 
-                    PostLogoutRedirectUris = { "https://localhost:44367/signout-callback-oidc" },
+                    PostLogoutRedirectUris = { $"{clientUrls["Mvc"]}/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
                     {
@@ -63,9 +63,9 @@ namespace EcommerceShop.BackEnd.IdentityServer
                     RequireConsent = false,
                     RequirePkce = true,
 
-                    RedirectUris =           { $"https://localhost:44354/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"https://localhost:44354/swagger/oauth2-redirect.html" },
-                    AllowedCorsOrigins =     { $"https://localhost:44354" },
+                    RedirectUris =           { $"{clientUrls["Swagger"]}/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"{clientUrls["Swagger"]}/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins =     { $"{clientUrls["Swagger"]}"},
 
                     AllowedScopes = new List<string>
                     {
@@ -90,19 +90,19 @@ namespace EcommerceShop.BackEnd.IdentityServer
 
                     RedirectUris = new List<string>
                     {
-                        "http://localhost:3000/authentication/login-callback",
-                        "http://localhost:3000/silent-renew.html",
-                        "http://localhost:3000"
+                        $"{clientUrls["React"]}/authentication/login-callback",
+                        $"{clientUrls["React"]}/silent-renew.html",
+                        $"{clientUrls["React"]}"
                     },
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "http://localhost:3000/unauthorized",
-                        "http://localhost:3000/authentication/logout-callback",
-                        "http://localhost:3000"
+                        $"{clientUrls["React"]}/unauthorized",
+                        $"{clientUrls["React"]}/authentication/logout-callback",
+                        $"{clientUrls["React"]}"
                     },
                     AllowedCorsOrigins = new List<string>
                     {
-                        "http://localhost:3000"
+                         $"{clientUrls["React"]}"
                     },
                     AllowedScopes = new List<string>
                     {
