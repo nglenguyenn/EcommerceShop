@@ -1,5 +1,6 @@
 ﻿using EcommerceShop.CustomerSite.Models;
-using EcommerceShop.CustomerSite.Services;
+using EcommerceShop.CustomerSite.Services.CategoryClient;
+using EcommerceShop.CustomerSite.Services.ProductClient;
 using EcommerceShop.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,17 +16,22 @@ namespace EcommerceShop.CustomerSite.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICategoryApiClient _categoryClient;
+        private readonly IProductApiClient _productClient;
+
         private readonly ActivitySource activitySource = new ActivitySource("FrontendSource");
-        public HomeController(ILogger<HomeController> logger, ICategoryApiClient categoryClient)
+        public HomeController(ILogger<HomeController> logger, ICategoryApiClient categoryClient, IProductApiClient productClient)
         {
             _logger = logger;
             _categoryClient = categoryClient;
+            _productClient = productClient;
         }
 
         public async Task<IActionResult> Index()
         {
-            var categorys = await _categoryClient.GetCategories();
-            ViewBag.Category = categorys;
+            var categories = await _categoryClient.GetCategories();
+            ViewBag.Category = categories;
+            var products = await _productClient.GetProducts();
+            ViewBag.Products = products;
 
             return View();
         }

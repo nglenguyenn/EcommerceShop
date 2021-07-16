@@ -22,7 +22,7 @@ namespace EcommerceShop.BackEnd.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IStorageService _storageService;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public ProductsController(ApplicationDbContext context, IMapper mapper, IStorageService storageService)
         {
@@ -44,12 +44,15 @@ namespace EcommerceShop.BackEnd.Controllers
             //        Images = x.Images
             //    })
             //    .ToListAsync();
-            var product = await _context.Products.ToListAsync();
-            foreach (var item in product)
+            var products = await _context.Products
+                .Include(product=>product.Category)
+                .ToListAsync();
+
+            foreach (var item in products)
             {
                 item.Images = _storageService.GetFileUrl(item.Images);
             }
-            var productdto = _mapper.Map<IEnumerable<ProductDto>>(product);
+            var productdto = _mapper.Map<IEnumerable<ProductDto>>(products);
 
             return productdto;
         }
@@ -58,7 +61,10 @@ namespace EcommerceShop.BackEnd.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<ProductDto>> GetProduct(string id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                .Include(products => products.Category)
+                .Where(product => product.ProductId.Equals(id))
+                .SingleAsync();
 
             if (product == null)
             {
@@ -74,6 +80,7 @@ namespace EcommerceShop.BackEnd.Controllers
             //    Images = product.Images
             //};
             var productdto = _mapper.Map<ProductDto>(product);
+            productdto.NameCategory = product.Category.NameCategory;
             return productdto;
         }
 

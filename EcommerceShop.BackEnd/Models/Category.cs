@@ -11,6 +11,6 @@ namespace EcommerceShop.BackEnd.Models
         public string NameCategory { get; set; }
         public string Description { get; set; }
         public string Images { get; set; }
-        public ICollection<Product> Product { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

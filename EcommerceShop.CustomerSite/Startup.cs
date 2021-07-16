@@ -1,4 +1,3 @@
-using EcommerceShop.CustomerSite.Services;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -12,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
+using EcommerceShop.CustomerSite.Services.CategoryClient;
+using EcommerceShop.CustomerSite.Services.ProductClient;
 
 namespace EcommerceShop.CustomerSite
 {
@@ -72,6 +73,7 @@ namespace EcommerceShop.CustomerSite
             });
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpClient<ICategoryApiClient, CategoryApiClient>(configureClient);
+            services.AddTransient<IProductApiClient, ProductApiClient>();
 
             services.AddControllersWithViews();
         }

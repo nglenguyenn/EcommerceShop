@@ -1,4 +1,4 @@
-﻿using EcommerceShop.CustomerSite.Services;
+﻿using EcommerceShop.CustomerSite.Services.CategoryClient;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

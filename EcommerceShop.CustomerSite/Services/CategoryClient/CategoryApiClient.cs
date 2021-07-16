@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace EcommerceShop.CustomerSite.Services
+namespace EcommerceShop.CustomerSite.Services.CategoryClient
 {
     public class CategoryApiClient : ICategoryApiClient
     {
