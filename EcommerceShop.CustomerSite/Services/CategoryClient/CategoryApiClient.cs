@@ -19,9 +19,7 @@ namespace EcommerceShop.CustomerSite.Services.CategoryClient
         public async Task<IList<CategoryDto>> GetCategories()
         {
             var response = await _client.GetAsync("api/categories");
-
             response.EnsureSuccessStatusCode();
-
             return await response.Content.ReadAsAsync<IList<CategoryDto>>();
         }
     }

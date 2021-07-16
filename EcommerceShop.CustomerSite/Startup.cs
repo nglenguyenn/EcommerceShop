@@ -73,7 +73,7 @@ namespace EcommerceShop.CustomerSite
             });
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpClient<ICategoryApiClient, CategoryApiClient>(configureClient);
-            services.AddTransient<IProductApiClient, ProductApiClient>();
+            services.AddHttpClient<IProductApiClient, ProductApiClient>(configureClient);
 
             services.AddControllersWithViews();
         }

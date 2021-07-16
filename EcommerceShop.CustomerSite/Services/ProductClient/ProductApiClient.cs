@@ -18,7 +18,7 @@ namespace EcommerceShop.CustomerSite.Services.ProductClient
 
         public async Task<IList<ProductDto>> GetProducts()
         {
-            var response = await _client.GetAsync("api/product");
+            var response = await _client.GetAsync("api/products");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<ProductDto>>();
         }

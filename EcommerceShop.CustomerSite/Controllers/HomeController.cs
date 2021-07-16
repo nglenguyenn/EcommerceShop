@@ -29,7 +29,7 @@ namespace EcommerceShop.CustomerSite.Controllers
         public async Task<IActionResult> Index()
         {
             var categories = await _categoryClient.GetCategories();
-            ViewBag.Category = categories;
+            ViewBag.Categories = categories;
             var products = await _productClient.GetProducts();
             ViewBag.Products = products;
 
