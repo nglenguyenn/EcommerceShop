@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using EcommerceShop.BackEnd.Models;
 using System.Threading.Tasks;
 using System;
+using EcommerceShop.BackEnd.Data.SeedData;
 
 namespace EcommerceShop.BackEnd.Data
 {
@@ -15,16 +16,11 @@ namespace EcommerceShop.BackEnd.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.SeedCategoryData();
+            modelBuilder.SeedProductData();
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-
-        internal Task Delete(int productId)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

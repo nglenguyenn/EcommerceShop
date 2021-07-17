@@ -34,6 +34,7 @@ namespace EcommerceShop.CustomerSite
             {
                 ["Backend"] = Configuration["ClientUrl:Backend"],
             };
+
             services.AddHttpClient();
             services.AddAuthentication(options =>
             {
@@ -71,6 +72,7 @@ namespace EcommerceShop.CustomerSite
                 client.BaseAddress = new Uri(Configuration["BackEndUrl"]);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             });
+
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpClient<ICategoryApiClient, CategoryApiClient>(configureClient);
             services.AddHttpClient<IProductApiClient, ProductApiClient>(configureClient);

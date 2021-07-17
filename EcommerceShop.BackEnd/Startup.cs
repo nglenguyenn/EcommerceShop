@@ -83,7 +83,11 @@ namespace EcommerceShop.BackEnd
                     policy.Requirements.Add(new AdminRoleRequirement()));
             });
             services.AddSingleton<IAuthorizationHandler, AdminRoleHandler>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ecommerce Shop API", Version = "v1" });

@@ -46,6 +46,7 @@ namespace EcommerceShop.BackEnd.Controllers
             //    .ToListAsync();
             var products = await _context.Products
                 .Include(product=>product.Category)
+                .AsNoTracking()
                 .ToListAsync();
 
             foreach (var item in products)
@@ -64,6 +65,7 @@ namespace EcommerceShop.BackEnd.Controllers
             var product = await _context.Products
                 .Include(products => products.Category)
                 .Where(product => product.ProductId.Equals(id))
+                .AsNoTracking()
                 .SingleAsync();
 
             if (product == null)
@@ -98,15 +100,14 @@ namespace EcommerceShop.BackEnd.Controllers
                 product.Images = await SaveFile(productUpdateRequest.ThumbnailImages);
             }
 
-            //product.Name = productCreateRequest.Name;
-            //product.Price = productCreateRequest.Price;
-            //product.Description = productCreateRequest.Description;
-            //product.Images = productCreateRequest.Images;
-            //product.UpdatedDate = DateTime.Now.Date;
-            _context.Entry(product).CurrentValues.SetValues(productUpdateRequest);
+            product.Name = productUpdateRequest.Name;
+            product.Description = productUpdateRequest.Description;
+            product.Price = productUpdateRequest.Price;
+            product.CategoryId = productUpdateRequest.CategoryId;
             product.UpdatedDate = DateTime.Now.Date;
 
             await _context.SaveChangesAsync();
+
             var productdto = _mapper.Map<ProductDto>(product);
 
             return productdto;

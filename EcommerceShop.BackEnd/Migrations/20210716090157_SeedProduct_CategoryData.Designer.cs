@@ -4,14 +4,16 @@ using EcommerceShop.BackEnd.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EcommerceShop.BackEnd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210716090157_SeedProduct_CategoryData")]
+    partial class SeedProduct_CategoryData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,68 +108,6 @@ namespace EcommerceShop.BackEnd.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = "1",
-                            CategoryId = "1",
-                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Description = "Test Product 1",
-                            Name = "Test Product 1",
-                            Price = 100m,
-                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ProductId = "2",
-                            CategoryId = "2",
-                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Description = "Test Product 2",
-                            Name = "Test Product 2",
-                            Price = 200m,
-                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ProductId = "3",
-                            CategoryId = "3",
-                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Description = "Test Product 3",
-                            Name = "Test Product 3",
-                            Price = 500m,
-                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ProductId = "4",
-                            CategoryId = "4",
-                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Description = "Test Product 4",
-                            Name = "Test Product 4",
-                            Price = 150m,
-                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ProductId = "5",
-                            CategoryId = "5",
-                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Description = "Test Product 5",
-                            Name = "Test Product 5",
-                            Price = 700m,
-                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ProductId = "6",
-                            CategoryId = "1",
-                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Description = "Test Product 6",
-                            Name = "Test Product 6",
-                            Price = 200m,
-                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.User", b =>
