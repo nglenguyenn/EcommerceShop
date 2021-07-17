@@ -1,5 +1,7 @@
 ﻿using EcommerceShop.CustomerSite.Services.CategoryClient;
 using EcommerceShop.CustomerSite.Services.ProductClient;
+using EcommerceShop.Shared.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -40,10 +42,31 @@ namespace EcommerceShop.CustomerSite.Controllers
         {
             var product = await _productClient.GetProductById(id);
 
+            var reviews = await _productClient.GetReviews(id);
+            ViewBag.ReviewsCount = reviews.Count();
+            ViewBag.Reviews = reviews;
+
             var productsSameCate = await _productClient.GetProductSameCategory(id);
             ViewBag.ProductsSameCate = productsSameCate;
 
             return View(product);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> PostReview(string userName, int rating, string content, string productId)
+        {
+            var review = new ReviewCreateRequest
+            {
+                UserName = userName,
+                Content = content,
+                Rating = rating,
+                ProductId = productId,
+            };
+
+            await _productClient.PostReview(review);
+
+            return RedirectToAction("Detail", new { id = productId });
         }
     }
 }

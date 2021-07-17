@@ -1,8 +1,10 @@
 ﻿using EcommerceShop.Shared.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace EcommerceShop.CustomerSite.Services.ProductClient
@@ -36,7 +38,7 @@ namespace EcommerceShop.CustomerSite.Services.ProductClient
 
         public async Task<IList<ProductDto>> GetProductSameCategory(string id)
         {
-            var response = await _client.GetAsync("api/products/getproductsamecategory/" + id.ToString());
+            var response = await _client.GetAsync("api/products/getproductsamecategory/" + id);
 
             response.EnsureSuccessStatusCode();
 
@@ -53,5 +55,25 @@ namespace EcommerceShop.CustomerSite.Services.ProductClient
             return await response.Content.ReadAsAsync<IList<ProductDto>>();
 
         }
+
+        public async Task<IList<ReviewDto>> GetReviews(string id)
+        {
+
+            var response = await _client.GetAsync("api/reviews/getreviews/" + id);
+
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsAsync<IList<ReviewDto>>();
+        }
+
+        public async Task<ReviewCreateRequest> PostReview(ReviewCreateRequest reviewFormRequest)
+        {
+            var json = JsonConvert.SerializeObject(reviewFormRequest);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("api/reviews/postreview", data);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<ReviewCreateRequest>();
+        }
+
     }
 }

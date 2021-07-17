@@ -20,7 +20,7 @@ namespace EcommerceShop.BackEnd.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
         private readonly IStorageService _storageService;
 
         public CategoriesController(ApplicationDbContext context, IMapper mapper, IStorageService storageService)

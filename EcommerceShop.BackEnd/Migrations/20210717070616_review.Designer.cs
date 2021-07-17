@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceShop.BackEnd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210717055927_product7")]
-    partial class product7
+    [Migration("20210717070616_review")]
+    partial class review
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,6 +93,9 @@ namespace EcommerceShop.BackEnd.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal");
 
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -112,6 +115,7 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "Iphone12promax .jpg",
                             Name = "Iphone 12 pro max",
                             Price = 20000000m,
+                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -123,6 +127,7 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "Iphone11promax .jpg",
                             Name = "Iphone 11 pro max",
                             Price = 15000000m,
+                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -134,6 +139,7 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "samsungs21.jpg",
                             Name = "Samsung Galaxy S21 5G",
                             Price = 15000000m,
+                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -145,6 +151,7 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "samsungnote20.jpg",
                             Name = "Samsung Galaxy Note 20",
                             Price = 15000000m,
+                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -156,6 +163,7 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "sony1ii.png",
                             Name = "Sony Xperia 1 II",
                             Price = 15000000m,
+                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -167,19 +175,39 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "xiaomi-redmi-note-10-pro_2_2.png",
                             Name = "Xiaomi Redmi Note 10 pro",
                             Price = 15000000m,
-                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ProductId = "7",
-                            CategoryId = "4",
-                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            Description = "Xiaomi Poco M3",
-                            Images = "Pocom3.png",
-                            Name = "Xiaomi Poco M3",
-                            Price = 15000000m,
+                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("EcommerceShop.BackEnd.Models.Review", b =>
+                {
+                    b.Property<string>("ReviewId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateReview")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReviewId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.User", b =>
@@ -390,6 +418,15 @@ namespace EcommerceShop.BackEnd.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("EcommerceShop.BackEnd.Models.Review", b =>
+                {
+                    b.HasOne("EcommerceShop.BackEnd.Models.Product", "Product")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -444,6 +481,11 @@ namespace EcommerceShop.BackEnd.Migrations
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.Category", b =>
                 {
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("EcommerceShop.BackEnd.Models.Product", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

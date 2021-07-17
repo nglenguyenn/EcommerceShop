@@ -15,5 +15,6 @@ namespace EcommerceShop.Shared.DTO
         public string Images { get; set; }
         public string CategoryId { get; set; }
         public string NameCategory { get; set; }
+        public int Rating { get; set; }
     }
 }

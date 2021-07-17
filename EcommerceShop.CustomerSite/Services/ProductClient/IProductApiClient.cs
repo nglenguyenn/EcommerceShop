@@ -12,5 +12,7 @@ namespace EcommerceShop.CustomerSite.Services.ProductClient
         Task<ProductDto> GetProductById(string id);
         Task<IList<ProductDto>> GetProductSameCategory(string id);
         Task<IList<ProductDto>> GetProductByCategory(string id);
+        Task<IList<ReviewDto>> GetReviews(string id);
+        Task<ReviewCreateRequest> PostReview(ReviewCreateRequest reviewcreateRequest);
     }
 }

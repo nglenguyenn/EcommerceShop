@@ -17,6 +17,8 @@ namespace EcommerceShop.BackEnd.Models
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
+        public int Rating { get; set; }
     }
 }

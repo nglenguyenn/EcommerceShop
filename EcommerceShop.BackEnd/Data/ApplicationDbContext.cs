@@ -9,7 +9,6 @@ namespace EcommerceShop.BackEnd.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -22,5 +21,6 @@ namespace EcommerceShop.BackEnd.Data
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }

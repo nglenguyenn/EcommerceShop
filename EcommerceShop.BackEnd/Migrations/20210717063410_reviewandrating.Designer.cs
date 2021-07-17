@@ -4,14 +4,16 @@ using EcommerceShop.BackEnd.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EcommerceShop.BackEnd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210717063410_reviewandrating")]
+    partial class reviewandrating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,9 +93,6 @@ namespace EcommerceShop.BackEnd.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -113,7 +112,6 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "Iphone12promax .jpg",
                             Name = "Iphone 12 pro max",
                             Price = 20000000m,
-                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -125,7 +123,6 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "Iphone11promax .jpg",
                             Name = "Iphone 11 pro max",
                             Price = 15000000m,
-                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -137,7 +134,6 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "samsungs21.jpg",
                             Name = "Samsung Galaxy S21 5G",
                             Price = 15000000m,
-                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -149,7 +145,6 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "samsungnote20.jpg",
                             Name = "Samsung Galaxy Note 20",
                             Price = 15000000m,
-                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -161,7 +156,6 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "sony1ii.png",
                             Name = "Sony Xperia 1 II",
                             Price = 15000000m,
-                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -173,7 +167,6 @@ namespace EcommerceShop.BackEnd.Migrations
                             Images = "xiaomi-redmi-note-10-pro_2_2.png",
                             Name = "Xiaomi Redmi Note 10 pro",
                             Price = 15000000m,
-                            Rating = 0,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -205,7 +198,7 @@ namespace EcommerceShop.BackEnd.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Review");
                 });
 
             modelBuilder.Entity("EcommerceShop.BackEnd.Models.User", b =>
