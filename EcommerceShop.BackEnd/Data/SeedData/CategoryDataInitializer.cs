@@ -11,37 +11,30 @@ namespace EcommerceShop.BackEnd.Data.SeedData
                 new Category
                 {
                     CategoryId = "1",
-                    NameCategory = "Test Category 1",
-                    Description= "Test Category 1",
-                    Images="",
+                    NameCategory = "Apple",
+                    Description = "Apple Inc",
+                    Images = "Apple.png",
                 },
                 new Category
                 {
                     CategoryId = "2",
-                    NameCategory = "Test Category 2",
-                    Description = "Test Category 2",
-                    Images = "",
+                    NameCategory = "SamSung",
+                    Description = "SamSung Inc",
+                    Images = "Samsung.png",
                 },
                 new Category
                 {
                     CategoryId = "3",
-                    NameCategory = "Test Category 3",
-                    Description = "Test Category 3",
-                    Images = "",
+                    NameCategory = "Sony",
+                    Description = "Sony Inc",
+                    Images = "Sony.png",
                 },
                 new Category
                 {
                     CategoryId = "4",
-                    NameCategory = "Test Category 4",
-                    Description = "Test Category 4",
-                    Images = "",
-                },
-                new Category
-                {
-                    CategoryId = "5",
-                    NameCategory = "Test Category 5",
-                    Description = "Test Category 5",
-                    Images = "",
+                    NameCategory = "Xiaomi",
+                    Description = "Xiaomi Inc",
+                    Images = "Xiaomi.png",
                 });
         }
     }

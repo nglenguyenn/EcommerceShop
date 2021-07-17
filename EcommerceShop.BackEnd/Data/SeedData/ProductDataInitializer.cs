@@ -11,55 +11,62 @@ namespace EcommerceShop.BackEnd.Data.SeedData
                 new Product
                 {
                     ProductId = "1",
-                    Name = "Test Product 1",
-                    Description = "Test Product 1",
-                    Price = 100,
+                    Name = "Iphone 12 pro max",
+                    Description = "Iphone 12 pro max",
+                    Price = 20000000,
                     CreatedDate = System.DateTime.Today,
                     CategoryId = "1",
+                    Images= "Iphone12promax .jpg"
                 },             
                 new Product
                 {
                     ProductId = "2",
-                    Name = "Test Product 2",
-                    Description = "Test Product 2",
-                    Price = 200,
+                    Name = "Iphone 11 pro max",
+                    Description = "Iphone 11 pro max",
+                    Price = 15000000,
                     CreatedDate = System.DateTime.Today,
-                    CategoryId = "2",
+                    CategoryId = "1",
+                    Images= "Iphone11promax .jpg"
                 },
                 new Product
                 {
                     ProductId = "3",
-                    Name = "Test Product 3",
+                    Name = "Samsung Galaxy S21 5G",
                     Description = "Test Product 3",
-                    Price = 500,
+                    Price = 15000000,
                     CreatedDate = System.DateTime.Today,
-                    CategoryId = "3",
+                    CategoryId = "2",
+                    Images = "samsungs21.jpg"
                 },
                 new Product
                 {
                     ProductId = "4",
-                    Name = "Test Product 4",
-                    Description = "Test Product 4",
-                    Price = 150,
+                    Name = "Samsung Galaxy Note 20",
+                    Description = "Samsung Galaxy Note 20",
+                    Price = 15000000,
                     CreatedDate = System.DateTime.Today,
-                    CategoryId = "4",
+                    CategoryId = "2",
+                    Images="samsungnote20.jpg"
                 },
                 new Product
                 {
                     ProductId = "5",
-                    Name = "Test Product 5",
-                    Description = "Test Product 5",
-                    Price = 700,
+                    Name = "Sony Xperia 1 II",
+                    Description = "Sony Xperia 1 II",
+                    Price = 15000000,
                     CreatedDate = System.DateTime.Today,
-                    CategoryId = "5",
-                }, new Product
+                    CategoryId = "3",
+                    Images = "sony1ii.png"
+                },
+                new Product
                 {
                     ProductId = "6",
-                    Name = "Test Product 6",
-                    Description = "Test Product 6",
-                    Price = 200,
+                    Name = "Xiaomi Redmi Note 10 pro",
+                    Description = "Xiaomi Redmi Note 10 pro",
+                    Price = 15000000,
                     CreatedDate = System.DateTime.Today,
-                    CategoryId = "1",
+                    CategoryId = "4",
+                    Images= "xiaomi-redmi-note-10-pro_2_2.png"
                 });
         }
     }

@@ -58,9 +58,9 @@ namespace EcommerceShop.BackEnd.Controllers
             return productdto;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetProductById/{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<ProductDto>> GetProduct(string id)
+        public async Task<ActionResult<ProductDto>> GetProductById(string id)
         {
             var product = await _context.Products
                 .Include(products => products.Category)
@@ -83,6 +83,49 @@ namespace EcommerceShop.BackEnd.Controllers
             //};
             var productdto = _mapper.Map<ProductDto>(product);
             productdto.NameCategory = product.Category.NameCategory;
+
+            return productdto;
+        }
+
+        [HttpGet("GetProductSameCategory/{productId}")]
+        [AllowAnonymous]
+        public async Task<IEnumerable<ProductDto>> GetProductSameCategory(string productId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+
+            var productsSame = await _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.CategoryId.Equals(product.CategoryId) && p.ProductId != product.ProductId)
+                .AsNoTracking()
+                .ToListAsync();
+
+            foreach (var item in productsSame)
+            {
+                item.Images = _storageService.GetFileUrl(item.Images);
+            }
+
+            var productDto = _mapper.Map<IEnumerable<ProductDto>>(productsSame);
+
+            return productDto;
+        }
+
+        [HttpGet("GetProductByCategory/{categoryId}")]
+        [AllowAnonymous]
+        public async Task<IEnumerable<ProductDto>> GetProductByCategory(string categoryId)
+        {
+            var products = await _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.CategoryId.Equals(categoryId))
+                .AsNoTracking()
+                .ToListAsync();
+
+            foreach (var item in products)
+            {
+                item.Images = _storageService.GetFileUrl(item.Images);
+            }
+
+            var productdto = _mapper.Map<IEnumerable<ProductDto>>(products);
+
             return productdto;
         }
 
@@ -100,13 +143,10 @@ namespace EcommerceShop.BackEnd.Controllers
                 product.Images = await SaveFile(productUpdateRequest.ThumbnailImages);
             }
 
-            product.Name = productUpdateRequest.Name;
-            product.Description = productUpdateRequest.Description;
-            product.Price = productUpdateRequest.Price;
-            product.CategoryId = productUpdateRequest.CategoryId;
+            _context.Entry(product).CurrentValues.SetValues(productUpdateRequest);
             product.UpdatedDate = DateTime.Now.Date;
-
             await _context.SaveChangesAsync();
+
 
             var productdto = _mapper.Map<ProductDto>(product);
 

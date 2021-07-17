@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿c<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -30,15 +30,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="./"> <i class="ion-cube"></i> Unistore</a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index"> <i class="ion-cube"></i> Unistore</a>
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    @*Button Product*@
+                    <li><a asp-controller="Product" asp-action="Index" asp-route-id="">Product</a></li>
+                    @*Dropdown Category*@
                     <li class="dropdown">@await Component.InvokeAsync("CategoryMenu")</li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Gallery</a></li>
                     <li class="dropdown">
                         <a href="./catalog/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -49,17 +50,7 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-controller="Account" asp-action="MyProfile"><span><i class="ion-ios-contact"></i> @User.Identity.Name</span></a></li>
-                        <li><a href="#"><i class="ion-android-cart"></i> Cart </a></li>
-                        <li><a asp-controller="Account" asp-action="SignOut"> <i class="ion-android-exit"></i> Logout </a></li>
-                    }
-                    else
-                    {
-                        <li><a href="#"><i class="ion-android-cart"></i> Cart </a></li>
-                        <li><a asp-controller="Account" asp-action="SignIn"> <i class="ion-android-person"></i> Login </a></li>
-                    }
+                    <partial name="_LoginPartial" />
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -210,6 +201,9 @@
     <script src="~/Template/assets/js/core.js"></script>
     <script src="~/Template/assets/js/carousel.js"></script>
     <script src="~/Template/assets/js/carousel-recommendation.js"></script>
+    <script src="~/Template/assets/js/catalog.js"></script>
+    <script type="text/javascript" src="~/Template/assets/js/jquery-ui-1.11.4.js"></script>
+    <script type="text/javascript" src="~/Template/assetss/js/jquery.ui.touch-punch.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

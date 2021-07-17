@@ -18,7 +18,6 @@ namespace EcommerceShop.CustomerSite.Controllers
         private readonly ICategoryApiClient _categoryClient;
         private readonly IProductApiClient _productClient;
 
-        private readonly ActivitySource activitySource = new ActivitySource("FrontendSource");
         public HomeController(ILogger<HomeController> logger, ICategoryApiClient categoryClient, IProductApiClient productClient)
         {
             _logger = logger;
@@ -30,6 +29,7 @@ namespace EcommerceShop.CustomerSite.Controllers
         {
             var categories = await _categoryClient.GetCategories();
             ViewBag.Categories = categories;
+
             var products = await _productClient.GetProducts();
             ViewBag.Products = products;
 
