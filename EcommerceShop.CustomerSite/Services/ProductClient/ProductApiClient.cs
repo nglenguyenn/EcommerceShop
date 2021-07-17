@@ -19,28 +19,39 @@ namespace EcommerceShop.CustomerSite.Services.ProductClient
         public async Task<IList<ProductDto>> GetProducts()
         {
             var response = await _client.GetAsync("api/products");
+
             response.EnsureSuccessStatusCode();
+
             return await response.Content.ReadAsAsync<IList<ProductDto>>();
         }
 
         public async Task<ProductDto> GetProductById(string id)
         {
-            var response = await _client.GetAsync("api/product/getproductbyid/" + id);
+            var response = await _client.GetAsync("api/products/getproductbyid/" + id);
+
             response.EnsureSuccessStatusCode();
+
             return await response.Content.ReadAsAsync<ProductDto>();
         }
 
         public async Task<IList<ProductDto>> GetProductSameCategory(string id)
         {
-            var response = await _client.GetAsync("api/product/getproductsamecategory/" + id);
+            var response = await _client.GetAsync("api/products/getproductsamecategory/" + id.ToString());
+
             response.EnsureSuccessStatusCode();
+
             return await response.Content.ReadAsAsync<IList<ProductDto>>();
+
         }
+
         public async Task<IList<ProductDto>> GetProductByCategory(string id)
         {
-            var response = await _client.GetAsync("api/product/getproductbycategory/" + id);
+            var response = await _client.GetAsync("api/products/getproductbycategory/" + id);
+
             response.EnsureSuccessStatusCode();
+
             return await response.Content.ReadAsAsync<IList<ProductDto>>();
+
         }
     }
 }

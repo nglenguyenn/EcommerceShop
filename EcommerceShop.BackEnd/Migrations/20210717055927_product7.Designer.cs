@@ -4,14 +4,16 @@ using EcommerceShop.BackEnd.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EcommerceShop.BackEnd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210717055927_product7")]
+    partial class product7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,7 +171,7 @@ namespace EcommerceShop.BackEnd.Migrations
                         },
                         new
                         {
-                            ProductId = "7a",
+                            ProductId = "7",
                             CategoryId = "4",
                             CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Xiaomi Poco M3",

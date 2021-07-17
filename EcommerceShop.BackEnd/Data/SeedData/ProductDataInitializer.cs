@@ -67,6 +67,16 @@ namespace EcommerceShop.BackEnd.Data.SeedData
                     CreatedDate = System.DateTime.Today,
                     CategoryId = "4",
                     Images= "xiaomi-redmi-note-10-pro_2_2.png"
+                }, 
+                new Product
+                {
+                    ProductId = "7",
+                    Name = "Xiaomi Poco M3",
+                    Description = "Xiaomi Poco M3",
+                    Price = 15000000,
+                    CreatedDate = System.DateTime.Today,
+                    CategoryId = "4",
+                    Images = "Pocom3.png"
                 });
         }
     }

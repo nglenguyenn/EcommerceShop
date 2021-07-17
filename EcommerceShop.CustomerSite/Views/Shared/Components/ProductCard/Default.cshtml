@@ -8,7 +8,7 @@
         <p class="price">@Convert.ToDecimal(Model.Price).ToString("#,##") VND</p>
         <label>@Model.NameCategory</label>
 
-        <a asp-controller="Product" asp-action="Detail" asp-route-id="@Model.ProductId class="btn btn-link"> Details</a>
+        <a asp-controller="Product" asp-action="Detail" asp-route-id="@Model.ProductId" class="btn btn-link"> Details</a>
         <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
     </div>
 </div>
