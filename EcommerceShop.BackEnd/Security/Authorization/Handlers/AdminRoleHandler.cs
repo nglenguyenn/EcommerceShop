@@ -1,11 +1,11 @@
-using System.Threading.Tasks;
 using EcommerceShop.BackEnd.Security.Authorization.AdminRoleHandler;
 using IdentityModel;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace EcommerceShop.BackEnd.Security.Authorization.Handlers
 {
-    public class AdminRoleHandler : AuthorizationHandler<AdminRoleRequirement>   
+    public class AdminRoleHandler : AuthorizationHandler<AdminRoleRequirement>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
                                                     AdminRoleRequirement requirement)
@@ -16,7 +16,7 @@ namespace EcommerceShop.BackEnd.Security.Authorization.Handlers
                 return Task.CompletedTask;
             }
 
-            var adminClaim = context.User.FindFirst(c => c.Type == JwtClaimTypes.Role && 
+            var adminClaim = context.User.FindFirst(c => c.Type == JwtClaimTypes.Role &&
                                                       c.Issuer == "https://localhost:5001" &&
                                                       c.Value == "Admin")?.Value;
 

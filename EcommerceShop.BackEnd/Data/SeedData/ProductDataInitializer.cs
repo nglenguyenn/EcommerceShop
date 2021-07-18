@@ -16,8 +16,8 @@ namespace EcommerceShop.BackEnd.Data.SeedData
                     Price = 20000000,
                     CreatedDate = System.DateTime.Today,
                     CategoryId = "1",
-                    Images= "Iphone12promax .jpg"
-                },             
+                    Images = "Iphone12promax .jpg"
+                },
                 new Product
                 {
                     ProductId = "2",
@@ -26,7 +26,7 @@ namespace EcommerceShop.BackEnd.Data.SeedData
                     Price = 15000000,
                     CreatedDate = System.DateTime.Today,
                     CategoryId = "1",
-                    Images= "Iphone11promax .jpg"
+                    Images = "Iphone11promax .jpg"
                 },
                 new Product
                 {
@@ -46,7 +46,7 @@ namespace EcommerceShop.BackEnd.Data.SeedData
                     Price = 15000000,
                     CreatedDate = System.DateTime.Today,
                     CategoryId = "2",
-                    Images="samsungnote20.jpg"
+                    Images = "samsungnote20.jpg"
                 },
                 new Product
                 {
@@ -66,7 +66,7 @@ namespace EcommerceShop.BackEnd.Data.SeedData
                     Price = 15000000,
                     CreatedDate = System.DateTime.Today,
                     CategoryId = "4",
-                    Images= "xiaomi-redmi-note-10-pro_2_2.png"
+                    Images = "xiaomi-redmi-note-10-pro_2_2.png"
                 });
         }
     }

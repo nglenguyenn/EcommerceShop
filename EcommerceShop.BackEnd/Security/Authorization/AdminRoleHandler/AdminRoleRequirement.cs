@@ -4,6 +4,6 @@ namespace EcommerceShop.BackEnd.Security.Authorization.AdminRoleHandler
 {
     public class AdminRoleRequirement : IAuthorizationRequirement
     {
-        public AdminRoleRequirement() {}
+        public AdminRoleRequirement() { }
     }
 }

@@ -47,7 +47,7 @@ namespace EcommerceShop.BackEnd.Controllers
             //    })
             //    .ToListAsync();
             var products = await _context.Products
-                .Include(product=>product.Category)
+                .Include(product => product.Category)
                 .AsNoTracking()
                 .ToListAsync();
 
@@ -133,9 +133,9 @@ namespace EcommerceShop.BackEnd.Controllers
 
         [HttpPut("{id}")]
         [Authorize("ADMIN_ROLE_POLICY")]
-        public async Task<ActionResult<ProductDto>> PutProduct(string id,  ProductUpdateRequest productUpdateRequest)
+        public async Task<ActionResult<ProductDto>> PutProduct(string id, ProductUpdateRequest productUpdateRequest)
         {
-            var product = await _context.Products.FindAsync(id);    
+            var product = await _context.Products.FindAsync(id);
 
             if (product == null)
             {
@@ -158,7 +158,7 @@ namespace EcommerceShop.BackEnd.Controllers
 
         [HttpPost]
         [Authorize("ADMIN_ROLE_POLICY")]
-        public async Task<ActionResult<ProductDto>> PostProduct( ProductCreateRequest productCreateRequest)
+        public async Task<ActionResult<ProductDto>> PostProduct(ProductCreateRequest productCreateRequest)
         {
             //var product = new Product
             //{
@@ -223,5 +223,5 @@ namespace EcommerceShop.BackEnd.Controllers
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
-    }    
+    }
 }

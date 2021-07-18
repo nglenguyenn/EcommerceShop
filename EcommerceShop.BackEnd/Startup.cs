@@ -39,14 +39,7 @@ namespace EcommerceShop.BackEnd
                 ["React"] = Configuration["ClientUrl:React"]
             };
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDatabaseDeveloperPageExceptionFilter();
-
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-            services.AddTransient<IStorageService, FileStorageService>();
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                  .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -90,8 +83,6 @@ namespace EcommerceShop.BackEnd
                     policy.Requirements.Add(new AdminRoleRequirement()));
             });
 
-            services.AddSingleton<IAuthorizationHandler, AdminRoleHandler>();
-
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 {
@@ -127,6 +118,10 @@ namespace EcommerceShop.BackEnd
             });
             services.AddRazorPages();
             services.AddHttpContextAccessor();
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddTransient<IStorageService, FileStorageService>();
+            services.AddSingleton<IAuthorizationHandler, AdminRoleHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

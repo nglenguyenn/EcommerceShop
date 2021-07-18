@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace EcommerceShop.BackEnd.IdentityServer
 {
-   public static class IdentityServerConfig
+    public static class IdentityServerConfig
     {
         public static IEnumerable<IdentityResource> IdentityResources =>
             new List<IdentityResource>

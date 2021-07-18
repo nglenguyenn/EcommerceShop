@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace EcommerceShop.BackEnd.Models
 {
-    public class User   :  IdentityUser
+    public class User : IdentityUser
     {
-      public User() : base()
+        public User() : base()
         {
         }
         public User(string userName) : base(userName)
@@ -12,6 +12,6 @@ namespace EcommerceShop.BackEnd.Models
         }
 
         [PersonalData]
-        public string FullName { get; set; }  
+        public string FullName { get; set; }
     }
 }

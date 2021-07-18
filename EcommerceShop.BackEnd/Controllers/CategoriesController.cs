@@ -77,7 +77,7 @@ namespace EcommerceShop.BackEnd.Controllers
 
         [HttpPut("{id}")]
         [Authorize("ADMIN_ROLE_POLICY")]
-        public async Task<ActionResult<CategoryDto>> PutCategory(string id,CategoryCreateRequest categoryCreateRequest)
+        public async Task<ActionResult<CategoryDto>> PutCategory(string id, CategoryCreateRequest categoryCreateRequest)
         {
             var category = await _context.Categories.FindAsync(id);
 

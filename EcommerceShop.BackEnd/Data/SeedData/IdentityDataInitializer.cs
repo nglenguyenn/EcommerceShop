@@ -34,7 +34,7 @@ namespace EcommerceShop.BackEnd.Data.SeedData
 
                 if (result.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user,"User").Wait();
+                    userManager.AddToRoleAsync(user, "User").Wait();
                 }
             }
 
@@ -49,7 +49,7 @@ namespace EcommerceShop.BackEnd.Data.SeedData
 
                 if (result.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user,"Admin").Wait();
+                    userManager.AddToRoleAsync(user, "Admin").Wait();
                 }
             }
         }

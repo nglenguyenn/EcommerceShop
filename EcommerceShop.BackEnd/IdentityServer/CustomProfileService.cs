@@ -1,16 +1,16 @@
+using EcommerceShop.BackEnd.Models;
+using IdentityModel;
+using IdentityServer4.Extensions;
+using IdentityServer4.Models;
 using IdentityServer4.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using EcommerceShop.BackEnd.Models;
 
 namespace EcommerceShop.BackEnd.IdentityServer
 {

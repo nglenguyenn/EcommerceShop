@@ -1,8 +1,5 @@
 ﻿using EcommerceShop.CustomerSite.Services.CategoryClient;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EcommerceShop.CustomerSite.ViewComponents

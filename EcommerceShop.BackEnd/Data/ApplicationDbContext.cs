@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using EcommerceShop.BackEnd.Data.SeedData;
 using EcommerceShop.BackEnd.Models;
-using System.Threading.Tasks;
-using System;
-using EcommerceShop.BackEnd.Data.SeedData;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceShop.BackEnd.Data
 {

@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using EcommerceShop.BackEnd.Models;
 using EcommerceShop.BackEnd.ViewModel.CustomAuthentication;
 using IdentityModel;
@@ -10,6 +9,7 @@ using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace EcommerceShop.BackEnd.Controllers
 {
@@ -131,7 +131,7 @@ namespace EcommerceShop.BackEnd.Controllers
             return View(vm);
         }
 
-       /// <summary>
+        /// <summary>
         /// Handle logout page postback
         /// </summary>
         [HttpPost]

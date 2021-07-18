@@ -1,6 +1,5 @@
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using EcommerceShop.CustomerSite.Services.CategoryClient;
+using EcommerceShop.CustomerSite.Services.ProductClient;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,9 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using System.Collections.Generic;
-using EcommerceShop.CustomerSite.Services.CategoryClient;
-using EcommerceShop.CustomerSite.Services.ProductClient;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace EcommerceShop.CustomerSite
 {

@@ -1,13 +1,9 @@
 ﻿using EcommerceShop.CustomerSite.Models;
 using EcommerceShop.CustomerSite.Services.CategoryClient;
 using EcommerceShop.CustomerSite.Services.ProductClient;
-using EcommerceShop.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EcommerceShop.CustomerSite.Controllers
