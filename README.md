@@ -1,7 +1,7 @@
 # EcommerceShop
 .Net Assignment for The Rookies - NashTech
 ## Building an Ecommerce WebSite :
-### Customer site (storefront): Using ASP.NET (Core) MVC pattern for this site.
+### - Customer site (storefront): Using ASP.NET (Core) MVC pattern for this site.
       •	Home page: category menu, features products
       •	View products by category
       •	View product details
@@ -9,7 +9,7 @@
       •	Register / Registration
       •	Login/Logout
       •	Optional (shopping cart, ordering / Checkout )
- ### Admin site: Using Single Page Application (SPA): API + ReactJS for this site.
+ ### - Admin site: Using Single Page Application (SPA): API + ReactJS for this site.
       •	Login/Logout
       •	Manage categories (Name, Description)
       •	Manage products (Name, Category, Description, Price, Images, CreatedDate, UpdatedDate)
