@@ -11,19 +11,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace EcommerceShop.BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(LocalApi.PolicyName)]
     public class ReviewsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public ReviewsController(ApplicationDbContext context, IMapper mapper)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ReviewsController(ApplicationDbContext context, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet("GetReviews/{id}")]
@@ -40,13 +44,13 @@ namespace EcommerceShop.BackEnd.Controllers
             return reviewdto;
         }
         [HttpPost("PostReview")]
-        public async Task<ActionResult<ReviewDto>> PostReview(ReviewCreateRequest reviewFormRequest)
+        public async Task<ActionResult<ReviewDto>> PostReview(ReviewCreateRequest reviewcreateRequest)
         {
-            var review = _mapper.Map<Review>(reviewFormRequest);
+            var review = _mapper.Map<Review>(reviewcreateRequest);
             review.ReviewId = Guid.NewGuid().ToString();
             review.DateReview = DateTime.Now.Date;
 
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             review.UserId = userId;
 
             _context.Reviews.Add(review);

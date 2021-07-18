@@ -13,11 +13,13 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace EcommerceShop.BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(LocalApi.PolicyName)]
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -130,6 +132,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<ProductDto>> PutProduct(string id,  ProductUpdateRequest productUpdateRequest)
         {
             var product = await _context.Products.FindAsync(id);    
@@ -154,6 +157,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPost]
+        [Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<ProductDto>> PostProduct( ProductCreateRequest productCreateRequest)
         {
             //var product = new Product
@@ -170,6 +174,7 @@ namespace EcommerceShop.BackEnd.Controllers
             product.ProductId = Guid.NewGuid().ToString();
             product.CreatedDate = DateTime.Now.Date;
             product.UpdatedDate = DateTime.Now.Date;
+            product.Rating = 0;
 
             if (productCreateRequest.Images != null)
             {
@@ -196,18 +201,19 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(string id)
+        [Authorize("ADMIN_ROLE_POLICY")]
+        public async Task<ActionResult<ProductDto>> DeleteProduct(string id)
         {
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
-
+            var productdto = _mapper.Map<ProductDto>(product);
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return productdto;
         }
 
         private async Task<string> SaveFile(IFormFile file)

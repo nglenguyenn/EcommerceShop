@@ -12,11 +12,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace EcommerceShop.BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(LocalApi.PolicyName)]
     public class CategoriesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -74,6 +76,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<CategoryDto>> PutCategory(string id,CategoryCreateRequest categoryCreateRequest)
         {
             var category = await _context.Categories.FindAsync(id);
@@ -101,6 +104,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPost]
+        [Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<CategoryDto>> PostCategory(CategoryCreateRequest categoryCreateRequest)
         {
             //var category = new Category
@@ -133,6 +137,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<CategoryDto>> DeleteCategory(string id)
         {
             var category = await _context.Categories.FindAsync(id);

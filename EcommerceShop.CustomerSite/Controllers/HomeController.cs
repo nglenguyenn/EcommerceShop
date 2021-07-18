@@ -17,6 +17,7 @@ namespace EcommerceShop.CustomerSite.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICategoryApiClient _categoryClient;
         private readonly IProductApiClient _productClient;
+        private readonly ActivitySource activitySource = new ActivitySource("FrontendSource");
 
         public HomeController(ILogger<HomeController> logger, ICategoryApiClient categoryClient, IProductApiClient productClient)
         {
@@ -27,6 +28,10 @@ namespace EcommerceShop.CustomerSite.Controllers
 
         public async Task<IActionResult> Index()
         {
+            using var activity = activitySource.StartActivity("starting to get products");
+            activity?.AddTag("service", "frontend");
+            _logger.LogInformation("test login with activity aware");
+
             var categories = await _categoryClient.GetCategories();
             ViewBag.Categories = categories;
 

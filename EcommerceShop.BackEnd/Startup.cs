@@ -38,14 +38,20 @@ namespace EcommerceShop.BackEnd
                 ["Swagger"] = Configuration["ClientUrl:Swagger"],
                 ["React"] = Configuration["ClientUrl:React"]
             };
+
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddTransient<IStorageService, FileStorageService>();
+
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                  .AddEntityFrameworkStores<ApplicationDbContext>()
                  .AddDefaultTokenProviders();
+
             services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -71,6 +77,7 @@ namespace EcommerceShop.BackEnd
                 {
                     option.ExpectedScope = "ecommerceshop.api";
                 });
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(LocalApi.PolicyName, policy =>
@@ -82,12 +89,15 @@ namespace EcommerceShop.BackEnd
                 options.AddPolicy("ADMIN_ROLE_POLICY", policy =>
                     policy.Requirements.Add(new AdminRoleRequirement()));
             });
+
             services.AddSingleton<IAuthorizationHandler, AdminRoleHandler>();
+
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ecommerce Shop API", Version = "v1" });
@@ -116,6 +126,7 @@ namespace EcommerceShop.BackEnd
                 });
             });
             services.AddRazorPages();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

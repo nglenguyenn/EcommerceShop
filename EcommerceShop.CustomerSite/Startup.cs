@@ -18,7 +18,6 @@ namespace EcommerceShop.CustomerSite
 {
     public class Startup
     {
-        private Dictionary<string, string> clientUrls;
 
         public Startup(IConfiguration configuration)
         {
@@ -30,12 +29,8 @@ namespace EcommerceShop.CustomerSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            clientUrls = new Dictionary<string, string>
-            {
-                ["Backend"] = Configuration["ClientUrl:Backend"],
-            };
-
             services.AddHttpClient();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
@@ -44,7 +39,7 @@ namespace EcommerceShop.CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = $"{clientUrls["Backend"]}";
+                    options.Authority = Configuration.GetServiceUri("backend").ToString();
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 
@@ -68,7 +63,8 @@ namespace EcommerceShop.CustomerSite
             {
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
                 var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
-                client.BaseAddress = new Uri(Configuration["BackEndUrl"]);
+
+                client.BaseAddress = Configuration.GetServiceUri("backend");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             });
 
@@ -98,7 +94,7 @@ namespace EcommerceShop.CustomerSite
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
