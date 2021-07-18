@@ -12,13 +12,13 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-12 align-center">
-                                    <h1>New amazing laptops</h1>
-                                    <p>Provide lightweight and powerull</p>
-                                    <a href="./catalog/">More laptops ></a>
+                                    <h1>New Iphone</h1>
+                                    <p>Best Phone for you</p>
+                                    <a href="./catalog/">More></a>
                                     <br><br>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-3 align-center">
-                                    <img src="~/Template/assets/img/carousel/newlaptops.jpg" alt="Laptops" />
+                                    <img src="~/Template/assets/img/carousel/shopping.png" alt="Iphone" />
                                 </div>
                             </div>
                         </div>
@@ -34,12 +34,12 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2 align-center">
-                                    <img src="~/Template/assets/img/carousel/surfaces.jpg" alt="Surface Pro" />
+                                    <img src="~/Template/assets/img/carousel/xiaomi (1).png" alt="xiaomi" />
                                 </div>
                                 <div class="col-sm-12 align-center">
-                                    <h1>8 Windows Hybrid Laptops</h1>
-                                    <p>The laptop comes with an Intel i5 chip and 8GB of RAM.</p>
-                                    <a href="./catalog/">View surfaces ></a>
+                                    <h1>New Xiaomi Phone </h1>
+                                    <p>This phone for you</p>
+                                    <a href="./catalog/"> Xiaomi></a>
                                 </div>
                             </div>
                         </div>
@@ -55,8 +55,8 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-5 col-sm-offset-1 align-center">
-                                    <img src="~/Template/assets/img/carousel/ipadair2.jpg" alt="iPad Air 2" class="hidden-xs hidden-sm" />
-                                    <img src="~/Template/assets/img/carousel/ipadair2m.jpg" alt="iPad Air 2" class="hidden-md hidden-lg" />
+                                    <img src="~/Template/assets/img/carousel/shopping (1).png" alt="iPad Air 2" class="hidden-xs hidden-sm" />
+                                    <img src="~/Template/assets/img/carousel/shopping (1).png" alt="iPad Air 2" class="hidden-md hidden-lg" />
                                 </div>
                                 <div class="col-sm-4 align-left">
                                     <br class="hidden-xs hidden-sm"><br class="hidden-xs hidden-sm"><br class="hidden-xs hidden-sm">
@@ -78,9 +78,9 @@
         </div>
     </div>
     <ul class="markers">
-        <li data-marker="1"><img src="~/Template/assets/img/carousel/newlaptops.jpg" alt="Background" /></li>
-        <li data-marker="2" class="active"><img src="~/Template/assets/img/carousel/surfaces.jpg" alt="Background" /></li>
-        <li data-marker="3"><img src="~/Template/assets/img/carousel/ipadair2.jpg" alt="Background" /></li>
+        <li data-marker="1"><img src="~/Template/assets/img/carousel/shopping.png" alt="Background" /></li>
+        <li data-marker="2" class="active"><img src="~/Template/assets/img/carousel/xiaomi (1).png" alt="Background" /></li>
+        <li data-marker="3"><img src="~/Template/assets/img/carousel/shopping (1).png" alt="Background" /></li>
     </ul>
 </div>
 
@@ -91,8 +91,7 @@
         {
             <div class="col-sm-3 align-center">
                 <a asp-controller="Product" asp-action="Index" asp-route-id="@cate.CategoryId">
-                    <img src="@cate.Images" alt="Blog" class="image" />
-                </a>
+                    <img src="@cate.Images" alt="Blog" class="image" style="height: 250px; width: 250px" /></a>           
                 <br><br>
 
                 <a asp-controller="Product" asp-action="Index" asp-route-id="@cate.CategoryId">@cate.NameCategory</a>
