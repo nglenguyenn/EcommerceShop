@@ -130,7 +130,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ProductDto>> PutProduct(string id, [FromForm] ProductUpdateRequest productUpdateRequest)
+        public async Task<ActionResult<ProductDto>> PutProduct(string id,  ProductUpdateRequest productUpdateRequest)
         {
             var product = await _context.Products.FindAsync(id);    
 
@@ -154,7 +154,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> PostProduct([FromForm] ProductCreateRequest productCreateRequest)
+        public async Task<ActionResult<ProductDto>> PostProduct( ProductCreateRequest productCreateRequest)
         {
             //var product = new Product
             //{

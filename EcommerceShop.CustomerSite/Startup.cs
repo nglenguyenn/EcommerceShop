@@ -68,7 +68,6 @@ namespace EcommerceShop.CustomerSite
             {
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
                 var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
-
                 client.BaseAddress = new Uri(Configuration["BackEndUrl"]);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             });

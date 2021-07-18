@@ -74,7 +74,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<CategoryDto>> PutCategory(string id,[FromForm]CategoryCreateRequest categoryCreateRequest)
+        public async Task<ActionResult<CategoryDto>> PutCategory(string id,CategoryCreateRequest categoryCreateRequest)
         {
             var category = await _context.Categories.FindAsync(id);
 
@@ -101,7 +101,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CategoryDto>> PostCategory([FromForm]CategoryCreateRequest categoryCreateRequest)
+        public async Task<ActionResult<CategoryDto>> PostCategory(CategoryCreateRequest categoryCreateRequest)
         {
             //var category = new Category
             //{
@@ -133,18 +133,18 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(string id)
+        public async Task<ActionResult<CategoryDto>> DeleteCategory(string id)
         {
             var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
                 return NotFound();
             }
-
+            var categoryDto = _mapper.Map<CategoryDto>(category);
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return categoryDto;
         }
 
         private async Task<string> SaveFile(IFormFile file)
