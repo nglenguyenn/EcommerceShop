@@ -78,12 +78,13 @@ namespace EcommerceShop.BackEnd.IdentityServer
                new Client {
                     ClientName = "admin",
                     ClientId = "admin",
-                    // AccessTokenType = AccessTokenType.Reference,
+
+                    AccessTokenType = AccessTokenType.Reference,
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
                     RequireClientSecret = false,
                     RequireConsent = false,
-                    // RequirePkce = true,
+                    RequirePkce = true,
                     AlwaysSendClientClaims = true,
                     AllowOfflineAccess = true,
                     AlwaysIncludeUserClaimsInIdToken = true,

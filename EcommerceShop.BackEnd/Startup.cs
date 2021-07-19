@@ -22,6 +22,8 @@ namespace EcommerceShop.BackEnd
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -83,6 +85,17 @@ namespace EcommerceShop.BackEnd
                     policy.Requirements.Add(new AdminRoleRequirement()));
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins(clientUrls["React"])
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 {
@@ -133,6 +146,7 @@ namespace EcommerceShop.BackEnd
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseStaticFiles();
             app.UseRouting();
             app.UseIdentityServer();
