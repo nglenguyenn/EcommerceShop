@@ -1,4 +1,4 @@
-import MenuTop from "../MenuTop";
+import MenuTop from "../MenuTop/MenuTop";
 
 function Layout({children}) {
 

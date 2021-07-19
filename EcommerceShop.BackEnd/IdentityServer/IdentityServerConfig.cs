@@ -109,7 +109,6 @@ namespace EcommerceShop.BackEnd.IdentityServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.OfflineAccess,
                         "ecommerceshop.api",
                     }
                 }

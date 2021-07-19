@@ -93,103 +93,102 @@
             <div class="col-sm-5">
                 <div class="comments">
                     <h2 class="h3">Comment (@ViewBag.ReviewsCount)</h2>
-
                     <div class="wrapper">
                         <div class="content">
                             @foreach (var review in ViewBag.Reviews)
                             {
                                 @await Component.InvokeAsync("ReviewContent", review);
                             }
-
-                            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal-Comment"> <i class="ion-chatbox-working"></i> Add comment </button>
-                        </div>
-                        <br><br>
-
-                        <div class="talk">
-                            <h2 class="h3">Do you have any questions?</h2>
-                            <p>Online chat with our manager</p>
-
-                            <button class="btn btn-default btn-sm"> <i class="ion-android-contact"></i> Lat's talk </button>
                         </div>
                     </div>
+                    <br>
+                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal-Comment"> <i class="ion-chatbox-working"></i> Add comment </button>
+                </div>
+                <br><br>
+
+                <div class="talk">
+                    <h2 class="h3">Do you have any questions?</h2>
+                    <p>Online chat with our manager</p>
+
+                    <button class="btn btn-default btn-sm"> <i class="ion-android-contact"></i> Lat's talk </button>
                 </div>
             </div>
         </div>
-        <br>
-        <br>
+    </div>
+</div>
+<br>
+<br>
 
-        <section class="products">
-            <div class="container">
-                <h1 class="h3">Recommendation for you</h1>
+<section class="products">
+    <div class="container">
+        <h1 class="h3">Recommendation for you</h1>
 
-                <div class="row">
-                    @foreach (var product in ViewBag.ProductsSameCate)
-                    {
-                        @await Component.InvokeAsync("ProductCard", product);
-                    }
-                </div>
+        <div class="row">
+            @foreach (var product in ViewBag.ProductsSameCate)
+            {
+                @await Component.InvokeAsync("ProductCard", product);
+            }
+        </div>
+    </div>
+</section>
+<br>
+
+<br>
+
+<div class="modal fade" id="Modal-Comment" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header align-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ion-android-close"></i></span></button>
+                <h1 class="h4 modal-title">Add your comment</h1>
             </div>
-        </section>
-        <br>
-
-        <br>
-
-        <div class="modal fade" id="Modal-Comment" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header align-center">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ion-android-close"></i></span></button>
-                        <h1 class="h4 modal-title">Add your comment</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <form class="join" asp-action="PostReview" asp-controller="Product" method="post">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="rate">
-                                                <input type="radio" id="star5" name="rating" value="5" />
-                                                <label for="star5" title="text">5 stars</label>
-                                                <input type="radio" id="star4" name="rating" value="4" />
-                                                <label for="star4" title="text">4 stars</label>
-                                                <input type="radio" id="star3" name="rating" value="3" />
-                                                <label for="star3" title="text">3 stars</label>
-                                                <input type="radio" id="star2" name="rating" value="2" />
-                                                <label for="star2" title="text">2 stars</label>
-                                                <input type="radio" id="star1" name="rating" value="1" />
-                                                <label for="star1" title="text">1 star</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="userName" value="" placeholder="Name" required class="form-control" />
-                                            <input type="hidden" name="productId" value="@Model.ProductId" />
-                                            <br>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <textarea name="content" placeholder="Type here" required class="form-control" rows="5"></textarea>
-                                            <br>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="align-center">
-                                                <br>
-                                                <button type="submit" class="btn btn-primary btn-sm"> <i class="ion-android-send"></i> Send</button>
-                                                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"> <i class="ion-android-share"></i> No, thanks </button>
-                                                <br><br>
-                                            </div>
-                                        </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form class="join" asp-action="PostReview" asp-controller="Product" method="post">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rating" value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rating" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rating" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rating" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rating" value="1" />
+                                        <label for="star1" title="text">1 star</label>
                                     </div>
-                                </form>
-                            }
-                            else
-                            {
-                                <div class="text-center">
-                                    <h3 class="text-center">Please login before comment the product !</h3>
-                                    <a asp-controller="Account" asp-action="SignIn"> Login </a>
                                 </div>
-                            }
+                                <div class="col-sm-6">
+                                    <input type="text" name="userName" value="" placeholder="Name" required class="form-control" />
+                                    <input type="hidden" name="productId" value="@Model.ProductId" />
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+                                    <textarea name="content" placeholder="Type here" required class="form-control" rows="5"></textarea>
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="align-center">
+                                        <br>
+                                        <button type="submit" class="btn btn-primary btn-sm"> <i class="ion-android-send"></i> Send</button>
+                                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"> <i class="ion-android-share"></i> No, thanks </button>
+                                        <br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="text-center">
+                            <h3 class="text-center">Please login before comment the product !</h3>
+                            <a asp-controller="Account" asp-action="SignIn"> Login </a>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

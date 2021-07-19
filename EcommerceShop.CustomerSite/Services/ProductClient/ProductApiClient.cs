@@ -64,9 +64,9 @@ namespace EcommerceShop.CustomerSite.Services.ProductClient
             return await response.Content.ReadAsAsync<IList<ReviewDto>>();
         }
 
-        public async Task<ReviewCreateRequest> PostReview(ReviewCreateRequest reviewFormRequest)
+        public async Task<ReviewCreateRequest> PostReview(ReviewCreateRequest reviewCreateRequest)
         {
-            var json = JsonConvert.SerializeObject(reviewFormRequest);
+            var json = JsonConvert.SerializeObject(reviewCreateRequest);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _client.PostAsync("api/reviews/postreview", data);
             response.EnsureSuccessStatusCode();

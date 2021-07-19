@@ -6,7 +6,9 @@ const Product = () => {
   return (
     <>
       <h2 className="text-center p-3">Product</h2>
-      <Button color="success" className="mb-2 ml-2"><PlusCircleFill color="white" size={20} className="mr-2"/>Create new product</Button>
+      <div style={{float: 'right'}}>
+      <Button color="success" className="mb-2 ml-2"><PlusCircleFill color="white" size={20} className="mr-2"/> Create new product</Button>
+      </div>
       <Table striped className="text-center">
         <thead>
           <tr>
@@ -62,6 +64,7 @@ const Product = () => {
         </tbody>
       </Table>
     </>
+    
   );
 }
 export default Product;

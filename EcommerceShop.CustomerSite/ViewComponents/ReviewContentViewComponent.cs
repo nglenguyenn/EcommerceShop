@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace EcommerceShop.CustomerSite.ViewComponents
 {
-    public class ReviewViewComponent : ViewComponent
+    public class ReviewContentViewComponent : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(ReviewDto review)
         {

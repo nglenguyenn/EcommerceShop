@@ -50,8 +50,8 @@ namespace EcommerceShop.CustomerSite.Controllers
             return View(product);
         }
 
-        [Authorize]
-        [HttpPost]
+        //[Authorize]
+        //[HttpPost]
         public async Task<IActionResult> PostReview(string userName, int rating, string content, string productId)
         {
             var review = new ReviewCreateRequest

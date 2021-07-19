@@ -49,9 +49,9 @@ namespace EcommerceShop.BackEnd.Controllers
             {
                 item.Images = _storageService.GetFileUrl(item.Images);
             }
-            var categoryRes = _mapper.Map<IEnumerable<CategoryDto>>(category);
+            var categorydto = _mapper.Map<IEnumerable<CategoryDto>>(category);
 
-            return categoryRes;
+            return categorydto;
         }
 
         [HttpGet("{id}")]
@@ -98,9 +98,9 @@ namespace EcommerceShop.BackEnd.Controllers
             await _context.SaveChangesAsync();
 
             //return NoContent();
-            var categoryRes = _mapper.Map<CategoryDto>(category);
+            var categorydto = _mapper.Map<CategoryDto>(category);
 
-            return categoryRes;
+            return categorydto;
         }
 
         [HttpPost]

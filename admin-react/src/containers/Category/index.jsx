@@ -6,7 +6,9 @@ const Category = () => {
   return (
     <>
       <h2 className="text-center p-3">Category</h2>
-      <Button color="success" className="mb-2 ml-2"><PlusCircleFill color="white" size={20} className="mr-2"/>Create new category</Button>
+      <div style={{float: 'right'}}>
+      <Button color="success" className="mb-2 ml-2"><PlusCircleFill color="white" size={20} className="mr-2"/> Create new category</Button>
+      </div>
       <Table striped className="text-center">
         <thead>
           <tr>
