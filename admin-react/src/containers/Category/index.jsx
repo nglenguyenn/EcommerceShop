@@ -1,13 +1,19 @@
-import React from 'react';
-import { Table, Button } from 'reactstrap';
-import { PenFill, TrashFill, PlusCircleFill } from 'react-bootstrap-icons';
+import React from "react";
+import { Table, Button } from "reactstrap";
+import { PenFill, TrashFill, PlusCircleFill } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 const Category = () => {
   return (
     <>
       <h2 className="text-center p-3">Category</h2>
-      <div style={{float: 'right'}}>
-      <Button color="success" className="mb-2 ml-2"><PlusCircleFill color="white" size={20} className="mr-2"/> Create new category</Button>
+      <div style={{ float: "right" }}>
+        <Button color="success" className="mb-2 ml-2">
+          <PlusCircleFill color="white" size={20} className="mr-2" />
+          <Link to="/categoryform" className="text-decoration-none text-white">
+            Create new Category
+          </Link>
+        </Button>
       </div>
       <Table striped className="text-center">
         <thead>
@@ -26,8 +32,17 @@ const Category = () => {
             <td>Apple</td>
             <td>Description of Apple</td>
             <td>
-              <Button color="secondary" className="mr-2"><PenFill color="white" size={20} /></Button>
-              <Button color="danger" className="mr-2"><TrashFill color="white" size={20} /></Button>
+              <Button color="secondary" className="mr-2">
+                <Link
+                  to="/categoryform"
+                  className="text-decoration-none text-white"
+                >
+                  <PenFill color="white" size={20} />
+                </Link>
+              </Button>
+              <Button color="danger" className="mr-2">
+                <TrashFill color="white" size={20} />
+              </Button>
             </td>
           </tr>
           <tr>
@@ -37,8 +52,17 @@ const Category = () => {
             <td>Sony</td>
             <td>Description of Sony</td>
             <td>
-              <Button color="secondary" className="mr-2"><PenFill color="white" size={20} /></Button>
-              <Button color="danger" className="mr-2"><TrashFill color="white" size={20} /></Button>
+              <Button color="secondary" className="mr-2">
+                <Link
+                  to="/categoryform"
+                  className="text-decoration-none text-white"
+                >
+                  <PenFill color="white" size={20} />
+                </Link>
+              </Button>
+              <Button color="danger" className="mr-2">
+                <TrashFill color="white" size={20} />
+              </Button>
             </td>
           </tr>
           <tr>
@@ -48,13 +72,22 @@ const Category = () => {
             <td>SamSung</td>
             <td>Description of SamSung</td>
             <td>
-              <Button color="secondary" className="mr-2"><PenFill color="white" size={20} /></Button>
-              <Button color="danger" className="mr-2"><TrashFill color="white" size={20} /></Button>
+              <Button color="secondary" className="mr-2">
+                <Link
+                  to="/categoryform"
+                  className="text-decoration-none text-white"
+                >
+                  <PenFill color="white" size={20} />
+                </Link>
+              </Button>
+              <Button color="danger" className="mr-2">
+                <TrashFill color="white" size={20} />
+              </Button>
             </td>
           </tr>
         </tbody>
       </Table>
     </>
   );
-}
+};
 export default Category;

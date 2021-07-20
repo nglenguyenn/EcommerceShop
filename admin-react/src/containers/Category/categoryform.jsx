@@ -3,10 +3,10 @@ import { InputGroup, InputGroupAddon, InputGroupText, Input, Button, Container }
 import * as Icon from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
-const ProductForm = () => {
+const CategoryForm = () => {
     return (
         <>
-            <h2 className="text-center p-3">Product Form</h2>
+            <h2 className="text-center p-3">Category Form</h2>
             <div>
                 <Container>
                     <InputGroup>                       
@@ -18,20 +18,12 @@ const ProductForm = () => {
                     </InputGroup>
                     <br />
                     <InputGroup>
-                        <Input placeholder="Price" />
-                    </InputGroup>
-                    <br />
-                    <InputGroup>
-                        <Input placeholder="Category" />
-                    </InputGroup>
-                    <br />
-                    <InputGroup>
                         <Input type="file" />
                     </InputGroup>
                     <br />
                     <div className="text-center">
                         <Button color="secondary" className="mr-2">
-                            <Link to="/products" className="text-decoration-none text-white">Close</Link>
+                            <Link to="/categories" className="text-decoration-none text-white">Close</Link>
                         </Button>{' '}
                         <Button color="success">Submit</Button>{' '}
                     </div>
@@ -41,4 +33,4 @@ const ProductForm = () => {
     );
 }
 
-export default ProductForm; 
+export default CategoryForm; 
