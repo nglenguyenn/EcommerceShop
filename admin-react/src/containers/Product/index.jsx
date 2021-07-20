@@ -1,5 +1,12 @@
-import React from "react";
-import { Table, Button } from "reactstrap";
+import React, { useState } from "react";
+import {
+  Table,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
 import {
   StarFill,
   PenFill,
@@ -9,6 +16,10 @@ import {
 import { Link } from "react-router-dom";
 
 const Product = () => {
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
+
   return (
     <>
       <h2 className="text-center p-3">Product</h2>
@@ -59,7 +70,7 @@ const Product = () => {
                 </Link>
               </Button>
               <Button color="danger" className="mr-2">
-                <TrashFill color="white" size={20} />
+                <TrashFill color="white" size={20} onClick={toggle} />
               </Button>
             </td>
           </tr>
@@ -88,12 +99,26 @@ const Product = () => {
                 </Link>
               </Button>
               <Button color="danger" className="mr-2">
-                <TrashFill color="white" size={20} />
+                <TrashFill color="white" size={20} onClick={toggle} />
               </Button>
             </td>
           </tr>
         </tbody>
       </Table>
+      <div>
+        <Modal isOpen={modal} toggle={toggle}>
+          <ModalHeader toggle={toggle}>Delete</ModalHeader>
+          <ModalBody>Do you want to delete this product ?</ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onClick={toggle}>
+              No
+            </Button>{" "}
+            <Button color="danger" onClick={toggle}>
+              Yes
+            </Button>{" "}
+          </ModalFooter>
+        </Modal>
+      </div>
     </>
   );
 };
