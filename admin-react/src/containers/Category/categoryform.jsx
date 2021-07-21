@@ -1,6 +1,5 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Button, Container } from 'reactstrap';
-import * as Icon from 'react-bootstrap-icons';
+import { InputGroup, Input, Button, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 const CategoryForm = () => {

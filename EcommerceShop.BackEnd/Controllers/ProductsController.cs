@@ -132,8 +132,8 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize("ADMIN_ROLE_POLICY")]
-        public async Task<ActionResult<ProductDto>> PutProduct(string id, ProductUpdateRequest productUpdateRequest)
+        //[Authorize("ADMIN_ROLE_POLICY")]
+        public async Task<ActionResult<ProductDto>> PutProduct([FromForm]string id, ProductUpdateRequest productUpdateRequest)
         {
             var product = await _context.Products.FindAsync(id);
 
@@ -157,8 +157,8 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPost]
-        [Authorize("ADMIN_ROLE_POLICY")]
-        public async Task<ActionResult<ProductDto>> PostProduct(ProductCreateRequest productCreateRequest)
+        //[Authorize("ADMIN_ROLE_POLICY")]
+        public async Task<ActionResult<ProductDto>> PostProduct([FromForm] ProductCreateRequest productCreateRequest)
         {
             //var product = new Product
             //{
@@ -201,7 +201,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize("ADMIN_ROLE_POLICY")]
+        //[Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<ProductDto>> DeleteProduct(string id)
         {
             var product = await _context.Products.FindAsync(id);

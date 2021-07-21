@@ -16,7 +16,8 @@ namespace EcommerceShop.BackEnd.Storage
 
         public string GetFileUrl(string fileName)
         {
-            return $"https://localhost:44354/{IMG_SOURCE_FOLDER_NAME}/{fileName}";
+            return $"{Startup.clientUrls["Swagger"]}/{IMG_SOURCE_FOLDER_NAME}/{fileName}";
+            //return $"https://localhost:44354/{IMG_SOURCE_FOLDER_NAME}/{fileName}";
         }
 
         public async Task SaveFileAsync(Stream mediaBinaryStream, string fileName)
