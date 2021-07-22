@@ -61,7 +61,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var oldCategory = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "noimage.png"
@@ -100,7 +100,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var newCategory = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "noimage.png"
@@ -129,7 +129,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var newCategory = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "imageTest.png"
@@ -160,7 +160,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var newCategory = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "imageTest.png"

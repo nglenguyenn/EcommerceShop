@@ -33,7 +33,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var category = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "noimage.png"
@@ -43,7 +43,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var product = new Product
             {
-                ProductId = Guid.NewGuid().ToString(),
+                ProductId = "ProductId",
                 Name = "Name Product Test",
                 Description = "Description Product Test",
                 Images = "noimage.png",
@@ -78,7 +78,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var category = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "noimage.png"
@@ -88,7 +88,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var product = new Product
             {
-                ProductId = Guid.NewGuid().ToString(),
+                ProductId = "ProductId",
                 Name = "Name Product Test",
                 Description = "Description Product Test",
                 Images = "noimage.png",
@@ -130,7 +130,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var category = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "noimage.png"
@@ -140,7 +140,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var product = new Product
             {
-                ProductId = Guid.NewGuid().ToString(),
+                ProductId = "ProductId",
                 Name = "Name Product Test",
                 Description = "Description Product Test",
                 Images = "noimage.png",
@@ -236,7 +236,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var category = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "noimage.png"
@@ -246,7 +246,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var product = new Product
             {
-                ProductId = Guid.NewGuid().ToString(),
+                ProductId = "ProductId",
                 Name = "Name Product Test",
                 Description = "Description Product Test",
                 Images = "noimage.png",
@@ -297,7 +297,7 @@ namespace EcommerceShop.Test.ControllerTests
 
             var category = new Category
             {
-                CategoryId = Guid.NewGuid().ToString(),
+                CategoryId = "CategoryId",
                 NameCategory = "Name Category Test",
                 Description = "Description Category Test",
                 Images = "noimage.png"

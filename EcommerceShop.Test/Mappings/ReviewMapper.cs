@@ -15,7 +15,7 @@ namespace EcommerceShop.Test.Mappings
         {
             var config = new MapperConfiguration(c =>
             {
-                c.CreateMap<ReviewDto, ReviewDto>().ReverseMap();
+                c.CreateMap<ReviewDto, Review>().ReverseMap();
                 c.CreateMap<ReviewCreateRequest, Review>().ReverseMap();
             });
 

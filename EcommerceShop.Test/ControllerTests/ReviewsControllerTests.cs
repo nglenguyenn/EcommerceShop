@@ -36,21 +36,21 @@ namespace EcommerceShop.Test.ControllerTests
             var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
             mockHttpContextAccessor.Setup(o => o.HttpContext.User.Identity.Name).Returns(It.IsAny<string>());
 
-            var product = new Product { ProductId = "productId" };
+            var product = new Product { ProductId = "ProductId" };
             await dbContext.AddAsync(product);
             await dbContext.SaveChangesAsync();
 
-            var user = new User { Id = "userId" };
+            var user = new User { Id = "UserId" };
             await dbContext.AddAsync(user);
             await dbContext.SaveChangesAsync();
 
             var review = new Review
             {
-                ReviewId = "reviewId",
-                Content = "Comment",
-                Rating = 1,
-                ProductId = "productId",
-                UserId = "userId",
+                ReviewId = "ReviewId",
+                Content = "Comment Test",
+                Rating = 5,
+                ProductId = "ProductId",
+                UserId = "UserId",
                 UserName = "Le Nguyen",
                 DateReview = DateTime.Now.Date
             };
@@ -77,17 +77,17 @@ namespace EcommerceShop.Test.ControllerTests
 
             var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
             mockHttpContextAccessor.Setup(x => x.HttpContext.User.FindFirst(It.IsAny<string>()))
-            .Returns(new Claim("id", "userId"));
+            .Returns(new Claim("id", "UserId"));
 
-            var product = new Product { ProductId = "productId" };
+            var product = new Product { ProductId = "ProductId" };
             await dbContext.AddAsync(product);
             await dbContext.SaveChangesAsync();
 
             var reviewFormRequest = new ReviewCreateRequest
             {
-                Content = "Comment",
-                Rating = 1,
-                ProductId = "productId",
+                Content = "Comment Test",
+                Rating = 5,
+                ProductId = "ProductId",
                 UserName = "Le Nguyen",
             };
 
@@ -100,10 +100,10 @@ namespace EcommerceShop.Test.ControllerTests
             var postReviewResult = Assert.IsType<ActionResult<ReviewDto>>(result);
             var resultValue = Assert.IsType<ReviewDto>(postReviewResult.Value);
 
-            Assert.Equal("Comment", resultValue.Content);
-            Assert.Equal(1, resultValue.Rating);
-            Assert.Equal("userId", resultValue.UserId);
-            Assert.Equal("productId", resultValue.ProductId);
+            Assert.Equal("Comment Test", resultValue.Content);
+            Assert.Equal(5, resultValue.Rating);
+            Assert.Equal("UserId", resultValue.UserId);
+            Assert.Equal("ProductId", resultValue.ProductId);
             Assert.Equal("Le Nguyen", resultValue.UserName);
         }
     }
