@@ -27,3 +27,17 @@ export const PostProduct = (formData) => {
           return null;
       });
 };
+
+export const DeleteProduct = (id) => {
+  return axios({
+      method: "delete",
+      url: product_url + '/' + id,
+  })
+      .then((response) => {
+          return response.data;
+      })
+      .catch((error) => {
+          console.log(error.response);
+          return null;
+      });
+};

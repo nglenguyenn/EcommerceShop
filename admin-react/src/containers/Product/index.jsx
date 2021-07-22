@@ -9,7 +9,7 @@ const Product = () => {
 
   const toggle = () => setModal(!modal);
 
-  const { productItems } = useContext(ProductData);
+  const { productItems , deleteProduct } = useContext(ProductData);
 
   return (
     <>
@@ -28,7 +28,7 @@ const Product = () => {
             <th>Price</th>
             <th>Category</th>
             <th>Rating</th>
-            <th></th>
+            <th>Edit/Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -36,11 +36,11 @@ const Product = () => {
             productItems && productItems.map(product =>
               <tr>
                 <td>
-                  <img src={product.images} alt={product.name} width="150px" height="150px"></img>
+                  <img src={product.images} alt={product.name} width="120px" height="120px"></img>
                 </td>
                 <td>{product.name}</td>
                 <td>{product.description}</td>
-                <td>{product.price}VNĐ</td>
+                <td>{product.price}{" "}VNĐ</td>
                 <td>{product.nameCategory}</td>
                 <td>
                   {Array.from(Array(product.rating), () => {
@@ -50,10 +50,12 @@ const Product = () => {
                 <td>
                   <Button color="secondary" className="mr-2">
                     <Link to="/productform">
-                      <PenFill color="white" size={20} />
+                      <PenFill color="white" size={18} />
                     </Link>
+                  </Button>{" "}
+                  <Button color="danger" className="mr-2" onClick={() => deleteProduct(product.productId)}>
+                  <TrashFill color="white" size={18}  />
                   </Button>
-                  <Button color="danger" className="mr-2"><TrashFill color="white" size={20} onClick={toggle} /></Button>
                 </td>
               </tr>
             )}

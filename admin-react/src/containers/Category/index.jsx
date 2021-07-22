@@ -35,7 +35,7 @@ const Category = () => {
             <th>Image</th>
             <th>Name</th>
             <th>Description</th>
-            <th></th>
+            <th>Edit / Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -46,8 +46,8 @@ const Category = () => {
                   <img
                     src={category.images}
                     alt={category.nameCategory}
-                    width="150px"
-                    height="150px"
+                    width="120px"
+                    height="120px"
                   ></img>
                 </td>
                 <td>{category.nameCategory}</td>
@@ -55,11 +55,11 @@ const Category = () => {
                 <td>
                   <Button color="secondary" className="mr-2">
                     <Link to="/categoryform">
-                      <PenFill color="white" size={20} />
+                      <PenFill color="white" size={18} />
                     </Link>
-                  </Button>
+                  </Button>{" "}
                   <Button color="danger" className="mr-2">
-                    <TrashFill color="white" size={20} onClick={toggle} />
+                    <TrashFill color="white" size={18} onClick={toggle} />
                   </Button>
                 </td>
               </tr>

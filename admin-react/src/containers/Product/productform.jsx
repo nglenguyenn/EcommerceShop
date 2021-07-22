@@ -26,7 +26,7 @@ const ProductForm = () => {
         });
         postProduct(formData);
         actions.setSubmitting(false);
-      }, 2000);
+      }, 1000);
     },
   });
   return (
