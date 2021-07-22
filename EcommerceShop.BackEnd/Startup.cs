@@ -148,7 +148,11 @@ namespace EcommerceShop.BackEnd
                }
 
                app.UseHttpsRedirection();
-               app.UseCors(option => { option.AllowAnyHeader().AllowAnyMethod().AllowCredentials().SetIsOriginAllowed(host => true); });
+               app.UseCors(option => { option
+                   .AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .AllowCredentials()
+                   .SetIsOriginAllowed(host => true);});
                app.UseStaticFiles();
                app.UseRouting();
                app.UseIdentityServer();

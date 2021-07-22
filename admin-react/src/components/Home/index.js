@@ -10,7 +10,7 @@ const Home = () => {
         <hr className="my-2" />
         <p></p>
         <p className="lead">
-          <Button color="primary">Go</Button>
+          <Button color="primary">Swagger</Button>
         </p>
       </Jumbotron>
     </div>

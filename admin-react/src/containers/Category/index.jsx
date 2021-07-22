@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 import { PenFill, TrashFill, PlusCircleFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import CategoryDataProvider , {CategoryData} from "../../data/categoryData";
+import {CategoryData} from "../../data/categoryData";
 
 const Category = () => {
   const [modal, setModal] = useState(false);
@@ -19,12 +19,12 @@ const Category = () => {
   const { categoryItems } = useContext(CategoryData);
 
   return (
-    <CategoryDataProvider>
+    <>
       <h2 className="text-center p-3">Category</h2>
       <div style={{ float: "right" }}>
       <Button color="success" className="mb-2 ml-2">
         <PlusCircleFill color="white" size={20} className="mr-2" />
-        <Link to="/formcategory" className="text-decoration-none text-white">
+        <Link to="/categoryform" className="text-decoration-none text-white">
           New Category
         </Link>
       </Button>
@@ -81,7 +81,7 @@ const Category = () => {
           </ModalFooter>
         </Modal>
       </div>
-    </CategoryDataProvider>
+    </>
   );
 };
 export default Category;
