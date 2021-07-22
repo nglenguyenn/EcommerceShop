@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { GetProducts, PostProduct, DeleteProduct } from "../services/productAPI";
+import { GetProducts, PostProduct, PutProduct, DeleteProduct } from "../services/productAPI";
 import { GetCategories } from "../services/categoryAPI";
 
 export const ProductData = createContext({});
@@ -14,7 +14,14 @@ const ProductDataProvider = ({ children }) => {
       setProductItems(await GetProducts());
     }
     )();
-};
+  };
+  const putProduct = (id, formData) => {
+    (async () => {
+        await PutProduct(id, formData);
+        setProductItems(await GetProducts());
+    }
+    )();
+  };
   const deleteProduct = (id) => {
     (async () => {
         await DeleteProduct(id);
@@ -36,6 +43,7 @@ useEffect(() => {
         productItems,
         categoryItems,
         postProduct,
+        putProduct,
         deleteProduct
       }}
     >

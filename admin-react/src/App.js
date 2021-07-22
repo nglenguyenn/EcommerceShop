@@ -1,5 +1,5 @@
 import Layout from "./containers/Layout";
-import Home from "./components/Home";
+import Home from "./containers/Home";
 import { BrowserRouter, Route } from "react-router-dom";
 import Product from "./containers/Product";
 import Category from "./containers/Category";
@@ -22,7 +22,7 @@ function App() {
           <Route path="/products">
             <Product />
           </Route>
-          <Route path="/productform">
+          <Route path="/productform" component={ProductForm}>
             <ProductForm />
           </Route>
         </ProductProvider>
@@ -31,7 +31,7 @@ function App() {
           <Route path="/categories">
             <Category />
           </Route>
-          <Route path="/categoryform">
+          <Route path="/categoryform" component={CategoryForm}>
             <CategoryForm />
           </Route>
         </CategoryProvider>

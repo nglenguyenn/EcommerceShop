@@ -1,37 +1,98 @@
-import React from "react";
+import React, { useContext } from "react";
 import { InputGroup, Input, Button, Container } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useFormik } from "formik";
+import { CategoryData } from "../../data/categoryData";
 
-const CategoryForm = () => {
+const initialValues = {
+  name: "",
+  description: "",
+  images: null,
+};
+
+const CategoryForm = (props) => {
+  let history = useHistory();
+  // const categoryId = props.location.categoryId;
+  //const initialValues = props.location.category;
+  const { postCategory } = useContext(CategoryData);
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit: (values, actions) => {
+      actions.setSubmitting(true);
+      setTimeout(() => {
+        var formData = new FormData();
+
+        Object.keys(values).forEach((key) => {
+          formData.append(key, values[key]);
+        });
+
+        // if (categoryId === "") {
+          postCategory(formData);
+        // } else {
+          // putProduct(categoryId, formData);
+        //}
+        actions.setSubmitting(false);
+        history.push("/categories");
+      }, 1000);
+    },
+  });
   return (
     <>
       <h2 className="text-center p-3">Category Form</h2>
       <div>
-        <Container>
-          <InputGroup>
-            <Input placeholder="Name" />
-          </InputGroup>
-          <br />
-          <InputGroup>
-            <Input placeholder="Description" />
-          </InputGroup>
-          <br />
-          <InputGroup>
-            <Input type="file" />
-          </InputGroup>
-          <br />
-          <div className="text-center">
-            <Button color="secondary" className="mr-2">
-              <Link
-                to="/categories"
-                className="text-decoration-none text-white"
+        <form onSubmit={formik.handleSubmit}>
+          <Container>
+            <InputGroup>
+              <Input
+                name="nameCategory"
+                value={formik.values.nameCategory}
+                onChange={formik.handleChange}
+                placeholder="Name"
+              />
+            </InputGroup>
+            <br />
+            <InputGroup>
+              <Input
+                name="description"
+                value={formik.values.description}
+                onChange={formik.handleChange}
+                placeholder="Description"
+              />
+            </InputGroup>
+            <br />
+            <InputGroup>
+              <input
+                name="thumbnailImages"
+                type="file"
+                onChange={(event) => {
+                  formik.setFieldValue(
+                    "thumbnailImages",
+                    event.currentTarget.files[0]
+                  );
+                }}
+              />
+            </InputGroup>
+            <br />
+            <div className="text-center">
+              <Button color="secondary" className="mr-2" type="button">
+                <Link
+                  to="/categories"
+                  className="text-decoration-none text-white"
+                >
+                  Close
+                </Link>
+              </Button>{" "}
+              <Button
+                disabled={formik.isSubmitting}
+                type="submit"
+                color="success"
               >
-                Close
-              </Link>
-            </Button>{" "}
-            <Button color="success">Submit</Button>{" "}
-          </div>
-        </Container>
+                Submit
+              </Button>
+            </div>
+          </Container>
+        </form>
       </div>
     </>
   );

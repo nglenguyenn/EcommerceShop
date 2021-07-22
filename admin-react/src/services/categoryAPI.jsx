@@ -12,3 +12,44 @@ export const GetCategories = () => {
       return [];
     });
 };
+export const PostCategory = (formData) => {
+  return axios({
+    method: "post",
+    url: category_url,
+    data: formData,
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response);
+      return null;
+    });
+};
+export const PutCategory = (id, formData) => {
+  return axios({
+      method: "put",
+      url: category_url + '/' + id,
+      data: formData,
+  })
+      .then((response) => {
+          return response.data;
+      })
+      .catch((error) => {
+          console.log(error.response);
+          return null;
+      });
+    };
+export const DeleteCategory = (id) => {
+  return axios({
+    method: "delete",
+    url: category_url + "/" + id,
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response);
+      return null;
+    });
+};

@@ -15,29 +15,42 @@ export const GetProducts = () => {
 
 export const PostProduct = (formData) => {
   return axios({
-      method: "post",
-      url: product_url,
-      data: formData,
+    method: "post",
+    url: product_url,
+    data: formData,
   })
-      .then((response) => {
-          return response.data;
-      })
-      .catch((error) => {
-          console.log(error.response);
-          return null;
-      });
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response);
+      return null;
+    });
 };
-
+export const PutProduct = (formData,id) => {
+  return axios({
+    method: "put",
+    url: product_url + '/' + id,
+    data: formData,
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response);
+      return null;
+    });
+};
 export const DeleteProduct = (id) => {
   return axios({
-      method: "delete",
-      url: product_url + '/' + id,
+    method: "delete",
+    url: product_url + "/" + id,
   })
-      .then((response) => {
-          return response.data;
-      })
-      .catch((error) => {
-          console.log(error.response);
-          return null;
-      });
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response);
+      return null;
+    });
 };

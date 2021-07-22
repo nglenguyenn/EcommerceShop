@@ -134,7 +134,7 @@ namespace EcommerceShop.BackEnd.Controllers
         [HttpPut("{id}")]
         //[Authorize("ADMIN_ROLE_POLICY")]
         [AllowAnonymous]
-        public async Task<ActionResult<ProductDto>> PutProduct([FromForm]string id, ProductUpdateRequest productUpdateRequest)
+        public async Task<ActionResult<ProductDto>> PutProduct([FromForm] string id, ProductUpdateRequest productUpdateRequest)
         {
             var product = await _context.Products.FindAsync(id);
 
@@ -142,15 +142,18 @@ namespace EcommerceShop.BackEnd.Controllers
             {
                 return NotFound();
             }
-            if (productUpdateRequest.ThumbnailImages != null)
+            if (productUpdateRequest.Images != null)
             {
-                product.Images = await SaveFile(productUpdateRequest.ThumbnailImages);
+                product.Images = await SaveFile(productUpdateRequest.Images);
             }
 
-            _context.Entry(product).CurrentValues.SetValues(productUpdateRequest);
+            product.Name = productUpdateRequest.Name;
+            product.Description = productUpdateRequest.Description;
+            product.Price = productUpdateRequest.Price;
+            product.CategoryId = productUpdateRequest.CategoryId;
             product.UpdatedDate = DateTime.Now.Date;
-            await _context.SaveChangesAsync();
 
+            await _context.SaveChangesAsync();
 
             var productdto = _mapper.Map<ProductDto>(product);
 

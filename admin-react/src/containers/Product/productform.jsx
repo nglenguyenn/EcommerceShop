@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { InputGroup, Input, Button, Container } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import { ProductData } from "../../data/productData";
 
@@ -13,8 +13,8 @@ const initialValues = {
 };
 
 const ProductForm = () => {
+  let history = useHistory();
   const { categoryItems, postProduct } = useContext(ProductData);
-
   const formik = useFormik({
     initialValues,
     onSubmit: (values, actions) => {
@@ -26,6 +26,7 @@ const ProductForm = () => {
         });
         postProduct(formData);
         actions.setSubmitting(false);
+        history.push("/products");
       }, 1000);
     },
   });

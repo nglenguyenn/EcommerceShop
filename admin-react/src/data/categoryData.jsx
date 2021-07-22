@@ -1,27 +1,53 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { GetCategories } from '../services/categoryAPI';
-
+import React, { createContext, useEffect, useState } from "react";
+import {
+  GetCategories,
+  PostCategory,
+  DeleteCategory,
+  PutCategory
+} from "../services/categoryAPI";
 
 export const CategoryData = createContext({});
 
 const CategoryDataProvider = ({ children }) => {
-    const [categoryItems, setCategoryItems] = useState([]);
+  const [categoryItems, setCategoryItems] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setCategoryItems(await GetCategories());
-        };
+  const postCategory = (formData) => {
+    (async () => {
+      await PostCategory(formData);
+      setCategoryItems(await GetCategories());
+    })();
+  };
+  const putCategory = (id, formData) => {
+    (async () => {
+      await PutCategory(id, formData);
+      setCategoryItems(await GetCategories());
+    })();
+  };
 
-        fetchData();
-    }, []);
+  const deleteCategory = (id) => {
+    (async () => {
+      await DeleteCategory(id);
+      setCategoryItems(await GetCategories());
+    })();
+  };
+  useEffect(() => {
+    (async () => {
+      setCategoryItems(await GetCategories());
+    })();
+  }, []);
 
-    return (
-        <CategoryData.Provider value={{
-            categoryItems,
-        }}>
-            {children}
-        </CategoryData.Provider>
-    );
+  return (
+    <CategoryData.Provider
+      value={{
+        categoryItems,
+        postCategory,
+        putCategory,
+        deleteCategory,
+      }}
+    >
+      {children}
+    </CategoryData.Provider>
+  );
 };
 
-export default CategoryDataProvider
+export default CategoryDataProvider;
