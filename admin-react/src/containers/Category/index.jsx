@@ -25,7 +25,7 @@ const Category = () => {
       <Button color="success" className="mb-2 ml-2">
         <PlusCircleFill color="white" size={20} className="mr-2" />
         <Link to="/categoryform" className="text-decoration-none text-white">
-          New Category
+        {" "}New Category
         </Link>
       </Button>
       </div>

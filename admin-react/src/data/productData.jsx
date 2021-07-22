@@ -1,25 +1,39 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { GetProducts } from '../services/productAPI';
+import React, { createContext, useEffect, useState } from "react";
+import { GetProducts, PostProduct } from "../services/productAPI";
+import { GetCategories } from "../services/categoryAPI";
 
 export const ProductData = createContext({});
 
 const ProductDataProvider = ({ children }) => {
-    const [productItems, setProductItems] = useState([]);
+  const [productItems, setProductItems] = useState([]);
+  const [categoryItems, setCategoryItems] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setProductItems(await GetProducts());
-        };
+  const postProduct = (formData) => {
+    (async () => {
+        await PostProduct(formData);
+      setProductItems(await GetProducts());
+    }
+    )();
+};
 
-        fetchData();
-    }, []);
+useEffect(() => {
+    (async () => {
+        setProductItems(await GetProducts());
+        setCategoryItems(await GetCategories());
+    }
+    )();
+  }, []);
 
-    return (
-        <ProductData.Provider value={{
-            productItems,
-        }}>
-            {children}
-        </ProductData.Provider>
-    );
-}; 
+  return (
+    <ProductData.Provider
+      value={{
+        productItems,
+        categoryItems,
+        postProduct
+      }}
+    >
+      {children}
+    </ProductData.Provider>
+  );
+};
 export default ProductDataProvider;

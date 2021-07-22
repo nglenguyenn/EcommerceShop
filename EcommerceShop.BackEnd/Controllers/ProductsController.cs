@@ -133,6 +133,7 @@ namespace EcommerceShop.BackEnd.Controllers
 
         [HttpPut("{id}")]
         //[Authorize("ADMIN_ROLE_POLICY")]
+        [AllowAnonymous]
         public async Task<ActionResult<ProductDto>> PutProduct([FromForm]string id, ProductUpdateRequest productUpdateRequest)
         {
             var product = await _context.Products.FindAsync(id);
@@ -157,6 +158,7 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         //[Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<ProductDto>> PostProduct([FromForm] ProductCreateRequest productCreateRequest)
         {
@@ -202,6 +204,7 @@ namespace EcommerceShop.BackEnd.Controllers
 
         [HttpDelete("{id}")]
         //[Authorize("ADMIN_ROLE_POLICY")]
+        [AllowAnonymous]
         public async Task<ActionResult<ProductDto>> DeleteProduct(string id)
         {
             var product = await _context.Products.FindAsync(id);

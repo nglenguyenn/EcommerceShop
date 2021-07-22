@@ -16,7 +16,7 @@ const Product = () => {
       <h2 className="text-center p-3">Product</h2>
       <div style={{ float: "right" }}>
       <Button color="success" className="mb-2 ml-2"><PlusCircleFill color="white" size={20} className="mr-2" />
-        <Link to="/productform" className="text-decoration-none text-white">New Product</Link>    
+        <Link to="/productform" className="text-decoration-none text-white">{" "}New Product</Link>    
       </Button>
       </div>
       <Table striped className="text-center">
