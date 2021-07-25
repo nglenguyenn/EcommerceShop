@@ -1,20 +1,23 @@
 import React, { useContext } from "react";
-import { InputGroup, Input, Button, Container } from "reactstrap";
+import {
+  InputGroup,
+  InputGroupAddon,
+  Input,
+  Button,
+  Container,
+} from "reactstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
-import { CategoryData } from "../../data/categoryData";
 
-const initialValues = {
-  name: "",
-  description: "",
-  images: null,
-};
+import { CategoryData } from "../../data/categoryData";
 
 const CategoryForm = (props) => {
   let history = useHistory();
-  // const categoryId = props.location.categoryId;
-  //const initialValues = props.location.category;
-  const { postCategory } = useContext(CategoryData);
+
+  const categoryId = props.location.categoryId;
+  const initialValues = props.location.category;
+
+  const { postCategory, putCategory } = useContext(CategoryData);
 
   const formik = useFormik({
     initialValues,
@@ -27,23 +30,27 @@ const CategoryForm = (props) => {
           formData.append(key, values[key]);
         });
 
-        // if (categoryId === "") {
+        if (categoryId === "") {
           postCategory(formData);
-        // } else {
-          // putProduct(categoryId, formData);
-        //}
+        } else {
+          putCategory(categoryId, formData);
+        }
+
         actions.setSubmitting(false);
-        history.push("/categories");
+
+        history.push("/category");
       }, 1000);
     },
   });
+
   return (
     <>
-      <h2 className="text-center p-3">Category Form</h2>
+      <h2 className="text-center p-3">Category</h2>
       <div>
         <form onSubmit={formik.handleSubmit}>
           <Container>
             <InputGroup>
+              <InputGroupAddon addonType="prepend"></InputGroupAddon>
               <Input
                 name="nameCategory"
                 value={formik.values.nameCategory}
@@ -53,6 +60,7 @@ const CategoryForm = (props) => {
             </InputGroup>
             <br />
             <InputGroup>
+              <InputGroupAddon addonType="prepend"></InputGroupAddon>
               <Input
                 name="description"
                 value={formik.values.description}
@@ -77,7 +85,7 @@ const CategoryForm = (props) => {
             <div className="text-center">
               <Button color="secondary" className="mr-2" type="button">
                 <Link
-                  to="/categories"
+                  to="/category"
                   className="text-decoration-none text-white"
                 >
                   Close

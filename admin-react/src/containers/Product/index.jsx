@@ -67,7 +67,7 @@ const Product = () => {
                 <td>{product.nameCategory}</td>
                 <td>
                   {Array.from(Array(product.rating), () => {
-                    return <StarFill color="#ffdd59" size={20} />;
+                    return <StarFill color="#ffdd59" size={18} />;
                   })}
                 </td>
                 <td>

@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Table, Button } from "reactstrap";
 import { PenFill, TrashFill, PlusCircleFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { CategoryData } from "../../data/categoryData";
 
 const Category = () => {
-  const { categoryItems, deleteCategory  } = useContext(CategoryData);
+  const { categoryItems, deleteCategory } = useContext(CategoryData);
 
   return (
     <>
@@ -55,12 +55,26 @@ const Category = () => {
                 <td>{category.description}</td>
                 <td>
                   <Button color="secondary" className="mr-2">
-                    <Link to="/categoryform">
+                    <Link
+                      to={{
+                        pathname: "/categoryform",
+                        categoryId: category.categoryId,
+                        category: {
+                          nameCategory: category.nameCategory,
+                          description: category.description,
+                          images: null,
+                        },
+                      }}
+                    >
                       <PenFill color="white" size={18} />
                     </Link>
                   </Button>{" "}
-                  <Button color="danger" className="mr-2" onClick={() => deleteCategory(category.categoryId)}>
-                    <TrashFill color="white" size={20} />
+                  <Button
+                    color="danger"
+                    className="mr-2"
+                    onClick={() => deleteCategory(category.categoryId)}
+                  >
+                    <TrashFill color="white" size={18} />
                   </Button>
                 </td>
               </tr>

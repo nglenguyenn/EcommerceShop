@@ -1,42 +1,55 @@
 import React, { useContext } from "react";
-import { InputGroup, Input, Button, Container } from "reactstrap";
-import { Link,useHistory } from "react-router-dom";
+import {
+  InputGroup,
+  InputGroupAddon,
+  Input,
+  Button,
+  Container,
+} from "reactstrap";
+import { Link, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import { ProductData } from "../../data/productData";
 
-const initialValues = {
-  name: "",
-  description: "",
-  price: 0,
-  categoryId: "",
-  images: null,
-};
-
-const ProductForm = () => {
+const ProductForm = (props) => {
   let history = useHistory();
-  const { categoryItems, postProduct } = useContext(ProductData);
+
+  const productId = props.location.productId;
+  const initialValues = props.location.product;
+
+  const { categoryItems, postProduct, putProduct } = useContext(ProductData);
+
   const formik = useFormik({
     initialValues,
     onSubmit: (values, actions) => {
       actions.setSubmitting(true);
       setTimeout(() => {
         var formData = new FormData();
+
         Object.keys(values).forEach((key) => {
           formData.append(key, values[key]);
         });
-        postProduct(formData);
+
+        if (productId === "") {
+          postProduct(formData);
+        } else {
+          putProduct(productId, formData);
+        }
+
         actions.setSubmitting(false);
-        history.push("/products");
+
+        history.push("/product");
       }, 1000);
     },
   });
+
   return (
     <>
-      <h2 className="text-center p-3">Product Form</h2>
+      <h2 className="text-center p-3">Product</h2>
       <div>
         <form onSubmit={formik.handleSubmit}>
           <Container>
             <InputGroup>
+              <InputGroupAddon addonType="prepend"></InputGroupAddon>
               <Input
                 name="name"
                 value={formik.values.name}
@@ -46,6 +59,7 @@ const ProductForm = () => {
             </InputGroup>
             <br />
             <InputGroup>
+              <InputGroupAddon addonType="prepend"></InputGroupAddon>
               <Input
                 name="description"
                 value={formik.values.description}
@@ -55,6 +69,7 @@ const ProductForm = () => {
             </InputGroup>
             <br />
             <InputGroup>
+              <InputGroupAddon addonType="prepend"></InputGroupAddon>
               <Input
                 name="price"
                 type="number"
@@ -65,6 +80,7 @@ const ProductForm = () => {
             </InputGroup>
             <br />
             <InputGroup>
+              <InputGroupAddon addonType="prepend"></InputGroupAddon>
               <Input
                 type="select"
                 name="categoryId"
@@ -73,7 +89,7 @@ const ProductForm = () => {
               >
                 {categoryItems &&
                   categoryItems.map((category) => (
-                    <option value={category.categoryId}>
+                    <option selected value={category.categoryId}>
                       {category.nameCategory}
                     </option>
                   ))}
@@ -91,11 +107,8 @@ const ProductForm = () => {
             </InputGroup>
             <br />
             <div className="text-center">
-              <Button color="secondary" className="mr-2">
-                <Link
-                  to="/products"
-                  className="text-decoration-none text-white"
-                >
+              <Button color="secondary" className="mr-2" type="button">
+                <Link to="/product" className="text-decoration-none text-white">
                   Close
                 </Link>
               </Button>{" "}
@@ -105,7 +118,7 @@ const ProductForm = () => {
                 color="success"
               >
                 Submit
-              </Button>{" "}
+              </Button>
             </div>
           </Container>
         </form>

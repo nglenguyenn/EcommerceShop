@@ -47,12 +47,12 @@ export default function MenuTop() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/products" className={classes.linkTo}>
+        <Link to="/product" className={classes.linkTo}>
           Product
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/categories" className={classes.linkTo}>
+        <Link to="/category" className={classes.linkTo}>
           Category
         </Link>
       </MenuItem>

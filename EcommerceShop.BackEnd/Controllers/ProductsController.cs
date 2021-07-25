@@ -36,16 +36,6 @@ namespace EcommerceShop.BackEnd.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<ProductDto>> GetProduct()
         {
-            //return await _context.Products
-            //    .Select(x => new ProductDto
-            //    {
-            //        ProductId = x.ProductId,
-            //        Name = x.Name,
-            //        Description = x.Description,
-            //        Price = x.Price,
-            //        Images = x.Images
-            //    })
-            //    .ToListAsync();
             var products = await _context.Products
                 .Include(product => product.Category)
                 .AsNoTracking()
@@ -75,14 +65,7 @@ namespace EcommerceShop.BackEnd.Controllers
                 return NotFound();
             }
             product.Images = _storageService.GetFileUrl(product.Images);
-            //var productdto = new ProductDto
-            //{
-            //    ProductId = product.ProductId,
-            //    Name = product.Name,
-            //    Description = product.Description,
-            //    Price = product.Price,
-            //    Images = product.Images
-            //};
+
             var productdto = _mapper.Map<ProductDto>(product);
             productdto.NameCategory = product.Category.NameCategory;
 
@@ -134,7 +117,7 @@ namespace EcommerceShop.BackEnd.Controllers
         [HttpPut("{id}")]
         //[Authorize("ADMIN_ROLE_POLICY")]
         [AllowAnonymous]
-        public async Task<ActionResult<ProductDto>> PutProduct([FromForm] string id, ProductUpdateRequest productUpdateRequest)
+        public async Task<ActionResult<ProductDto>> PutProduct(string id,[FromForm] ProductUpdateRequest productUpdateRequest)
         {
             var product = await _context.Products.FindAsync(id);
 
@@ -142,6 +125,7 @@ namespace EcommerceShop.BackEnd.Controllers
             {
                 return NotFound();
             }
+
             if (productUpdateRequest.Images != null)
             {
                 product.Images = await SaveFile(productUpdateRequest.Images);
@@ -165,16 +149,7 @@ namespace EcommerceShop.BackEnd.Controllers
         //[Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<ProductDto>> PostProduct([FromForm] ProductCreateRequest productCreateRequest)
         {
-            //var product = new Product
-            //{
-            //    Name = productCreateRequest.Name,
-            //    Description = productCreateRequest.Description,
-            //    Price = productCreateRequest.Price,
-            //    Images = productCreateRequest.Images,
-            //    CreatedDate = DateTime.Now.Date,
-            //    UpdatedDate = DateTime.Now.Date,
-            //    CategoryId = productCreateRequest.CategoryId
-            //};
+
             var product = _mapper.Map<Product>(productCreateRequest);
             product.ProductId = Guid.NewGuid().ToString();
             product.CreatedDate = DateTime.Now.Date;
@@ -193,14 +168,6 @@ namespace EcommerceShop.BackEnd.Controllers
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetProduct", new { id = product.ProductId }, new ProductDto
-            //{
-            //    ProductId = product.ProductId,
-            //    Name = product.Name,
-            //    Description = product.Description,
-            //    Price = product.Price,
-            //    Images = product.Images
-            //});
             var productdto = _mapper.Map<ProductDto>(product);
             return productdto;
         }

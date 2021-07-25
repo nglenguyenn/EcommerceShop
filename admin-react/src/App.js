@@ -5,8 +5,8 @@ import Product from "./containers/Product";
 import Category from "./containers/Category";
 import ProductForm from "./containers/Product/productform";
 import CategoryForm from "./containers/Category/categoryform";
-import ProductProvider from "./data/productData";
-import CategoryProvider from "./data/categoryData";
+import ProductProdvider from './data/productData';
+import CategoryProdvider from './data/categoryData';
 
 import "./App.css";
 
@@ -17,24 +17,21 @@ function App() {
         <Route path="/" exact>
           <Home />
         </Route>
-
-        <ProductProvider>
-          <Route path="/products">
+        <ProductProdvider>
+          <Route path="/product" >
             <Product />
           </Route>
           <Route path="/productform" component={ProductForm}>
-            <ProductForm />
           </Route>
-        </ProductProvider>
+        </ProductProdvider>
 
-        <CategoryProvider>
-          <Route path="/categories">
+        <CategoryProdvider>
+          <Route path="/category" >
             <Category />
           </Route>
           <Route path="/categoryform" component={CategoryForm}>
-            <CategoryForm />
           </Route>
-        </CategoryProvider>
+        </CategoryProdvider>
       </Layout>
     </BrowserRouter>
   );

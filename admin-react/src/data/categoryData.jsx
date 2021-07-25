@@ -2,8 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 import {
   GetCategories,
   PostCategory,
+  PutCategory,
   DeleteCategory,
-  PutCategory
 } from "../services/categoryAPI";
 
 export const CategoryData = createContext({});
@@ -17,6 +17,7 @@ const CategoryDataProvider = ({ children }) => {
       setCategoryItems(await GetCategories());
     })();
   };
+
   const putCategory = (id, formData) => {
     (async () => {
       await PutCategory(id, formData);
@@ -30,6 +31,7 @@ const CategoryDataProvider = ({ children }) => {
       setCategoryItems(await GetCategories());
     })();
   };
+
   useEffect(() => {
     (async () => {
       setCategoryItems(await GetCategories());
