@@ -91,14 +91,14 @@ namespace EcommerceShop.BackEnd.IdentityServer
 
                     RedirectUris = new List<string>
                     {
-                        $"{clientUrls["React"]}/authentication/login-callback",
+                        $"{clientUrls["React"]}/signin-callback",
                         $"{clientUrls["React"]}/silent-renew.html",
                         $"{clientUrls["React"]}"
                     },
                     PostLogoutRedirectUris = new List<string>
                     {
                         $"{clientUrls["React"]}/unauthorized",
-                        $"{clientUrls["React"]}/authentication/logout-callback",
+                        $"{clientUrls["React"]}/signout-callback",
                         $"{clientUrls["React"]}"
                     },
                     AllowedCorsOrigins = new List<string>

@@ -3,6 +3,7 @@ import Home from "./containers/Home";
 import { BrowserRouter, Route } from "react-router-dom";
 import Product from "./containers/Product";
 import Category from "./containers/Category";
+import User from "./containers/User";
 import ProductForm from "./containers/Product/productform";
 import CategoryForm from "./containers/Category/categoryform";
 import ProductProdvider from './data/productData';
@@ -32,6 +33,9 @@ function App() {
           <Route path="/categoryform" component={CategoryForm}>
           </Route>
         </CategoryProdvider>
+        <Route path="/user" >
+          <User />
+        </Route>
       </Layout>
     </BrowserRouter>
   );

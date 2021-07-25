@@ -56,6 +56,11 @@ export default function MenuTop() {
           Category
         </Link>
       </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/user" className={classes.linkTo}>
+          User
+        </Link>
+      </MenuItem>
     </Menu>
   );
   return (
