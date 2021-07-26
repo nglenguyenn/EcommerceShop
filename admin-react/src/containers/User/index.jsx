@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Table } from 'reactstrap';
-import axios from "axios";
+import RequestService from "../../services/request";
 
 import { Backend_url } from '../../config';
 
@@ -11,7 +11,7 @@ const User = () => {
 
     useEffect(() => {
         (async () => {
-            await axios.get(user_url)
+            await RequestService.axios.get(user_url)
                 .then(response => setUserList(response.data))
                 .catch((error) => {
                     console.log(error.response);

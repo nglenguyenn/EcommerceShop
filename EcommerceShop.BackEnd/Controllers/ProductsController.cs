@@ -115,8 +115,8 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPut("{id}")]
-        //[Authorize("ADMIN_ROLE_POLICY")]
         [AllowAnonymous]
+        //[Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<ProductDto>> PutProduct(string id,[FromForm] ProductUpdateRequest productUpdateRequest)
         {
             var product = await _context.Products.FindAsync(id);
@@ -151,6 +151,7 @@ namespace EcommerceShop.BackEnd.Controllers
         {
 
             var product = _mapper.Map<Product>(productCreateRequest);
+
             product.ProductId = Guid.NewGuid().ToString();
             product.CreatedDate = DateTime.Now.Date;
             product.UpdatedDate = DateTime.Now.Date;
@@ -173,8 +174,8 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize("ADMIN_ROLE_POLICY")]
         [AllowAnonymous]
+        //[Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<ProductDto>> DeleteProduct(string id)
         {
             var product = await _context.Products.FindAsync(id);

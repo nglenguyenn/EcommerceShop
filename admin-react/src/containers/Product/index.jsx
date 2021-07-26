@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Table, Button } from "reactstrap";
+import { useContext, useState } from "react";
+import { Table, Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import {
   StarFill,
   PenFill,
@@ -11,6 +11,25 @@ import { ProductData } from "../../data/productData";
 
 const Product = () => {
   const { productItems, deleteProduct } = useContext(ProductData);
+  const [productId, setProductId] = useState("");
+
+  const [modal, setModal] = useState(false);
+
+  const handleClose = () => {
+    setModal(false);
+    setProductId("");
+  }
+
+  const handleShow = (props) => {
+    setModal(true);
+    setProductId(props);
+  }
+
+  const deletePro = (props) => {
+    deleteProduct(props)
+    setModal(false);
+    setProductId("");
+  }
 
   return (
     <>
@@ -91,7 +110,7 @@ const Product = () => {
                   <Button
                     color="danger"
                     className="mr-2"
-                    onClick={() => deleteProduct(product.productId)}
+                    onClick={() => handleShow(product.productId)}
                   >
                     <TrashFill color="white" size={18} />
                   </Button>
@@ -100,6 +119,16 @@ const Product = () => {
             ))}
         </tbody>
       </Table>
+      <Modal isOpen={modal}>
+        <ModalHeader>Delete product</ModalHeader>
+        <ModalBody>
+          Are you sure delete this product ?
+           </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={handleClose}>Close</Button>{' '}
+          <Button color="danger" onClick={() => deletePro(productId)}>Delete</Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };

@@ -76,8 +76,8 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPut("{id}")]
-        //[Authorize("ADMIN_ROLE_POLICY")]
         [AllowAnonymous]
+        //[Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<CategoryDto>> PutCategory(string id, [FromForm] CategoryCreateRequest categoryCreateRequest)
         {
             var category = await _context.Categories.FindAsync(id);
@@ -105,15 +105,10 @@ namespace EcommerceShop.BackEnd.Controllers
         }
 
         [HttpPost]
-        //[Authorize("ADMIN_ROLE_POLICY")]
         [AllowAnonymous]
+        //[Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<CategoryDto>> PostCategory([FromForm] CategoryCreateRequest categoryCreateRequest)
         {
-            //var category = new Category
-            //{
-            //    NameCategory = categoryCreateRequest.NameCategory,
-            //    Description = categoryCreateRequest.Description
-            //};
             var category = _mapper.Map<Category>(categoryCreateRequest);
             category.CategoryId = Guid.NewGuid().ToString();
 
@@ -129,18 +124,13 @@ namespace EcommerceShop.BackEnd.Controllers
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetCategory", new { id = category.CategoryId }, new CategoryDto
-            //{
-            //    NameCategory = category.NameCategory,
-            //    Description = category.Description
-            //});
             var categorydto = _mapper.Map<CategoryDto>(category);
             return categorydto;
         }
 
         [HttpDelete("{id}")]
-        //[Authorize("ADMIN_ROLE_POLICY")]
         [AllowAnonymous]
+        //[Authorize("ADMIN_ROLE_POLICY")]
         public async Task<ActionResult<CategoryDto>> DeleteCategory(string id)
         {
             var category = await _context.Categories.FindAsync(id);

@@ -1,12 +1,30 @@
-import React, { useContext } from "react";
-import { Table, Button } from "reactstrap";
+import { useContext, useState } from 'react';
+import { Table, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { PenFill, TrashFill, PlusCircleFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { CategoryData } from "../../data/categoryData";
 
 const Category = () => {
   const { categoryItems, deleteCategory } = useContext(CategoryData);
+  const [categoryId, setCategoryId] = useState("");
 
+  const [modal, setModal] = useState(false);
+
+  const handleClose = () => {
+    setModal(false);
+    setCategoryId("");
+  }
+
+  const handleShow = (props) => {
+    setModal(true);
+    setCategoryId(props);
+  }
+
+  const deleteCate = (props) => {
+    deleteCategory(props)
+    setModal(false);
+    setCategoryId("");
+  }
   return (
     <>
       <h2 className="text-center p-3">Category</h2>
@@ -72,7 +90,7 @@ const Category = () => {
                   <Button
                     color="danger"
                     className="mr-2"
-                    onClick={() => deleteCategory(category.categoryId)}
+                    onClick={() => handleShow(category.categoryId)}
                   >
                     <TrashFill color="white" size={18} />
                   </Button>
@@ -81,6 +99,16 @@ const Category = () => {
             ))}
         </tbody>
       </Table>
+      <Modal isOpen={modal}>
+        <ModalHeader>Delete category</ModalHeader>
+        <ModalBody>
+          Are you sure delete this category ?
+           </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={handleClose}>Close</Button>{' '}
+          <Button color="danger" onClick={() => deleteCate(categoryId)}>Delete</Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };

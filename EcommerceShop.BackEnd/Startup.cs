@@ -22,7 +22,7 @@ namespace EcommerceShop.BackEnd
 {
      public class Startup
      {
-          //readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+          readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
           public Startup(IConfiguration configuration)
           {
@@ -86,23 +86,20 @@ namespace EcommerceShop.BackEnd
                     options.AddPolicy("ADMIN_ROLE_POLICY", policy =>
                      policy.Requirements.Add(new AdminRoleRequirement()));
                });
+                services.AddSingleton<IAuthorizationHandler, AdminRoleHandler>();
 
-               //services.AddCors(options =>
-               //{
-               //    options.AddPolicy(MyAllowSpecificOrigins,
-               //    builder =>
-               //    {
-               //        builder.WithOrigins(clientUrls["React"])
-               //            .AllowAnyHeader()
-               //            .AllowAnyMethod();
-               //    });
-               //});
+                services.AddCors(options =>
+                {
+                    options.AddPolicy(name: MyAllowSpecificOrigins,
+                                      builder =>
+                                      {
+                                        builder.WithOrigins("http://localhost:3000")
+                                                                  .AllowAnyHeader()
+                                                            .AllowAnyMethod();
+                                      });
+                });
 
-               services.AddControllersWithViews()
-                   .AddNewtonsoftJson(options =>
-                   {
-                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                   });
+            services.AddControllersWithViews();
 
                services.AddSwaggerGen(c =>
                {
@@ -121,7 +118,7 @@ namespace EcommerceShop.BackEnd
                          },
                     });
                     c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                   {
+                    {
                     {
                         new OpenApiSecurityScheme
                         {
@@ -136,7 +133,7 @@ namespace EcommerceShop.BackEnd
                services.AddDatabaseDeveloperPageExceptionFilter();
                services.AddAutoMapper(Assembly.GetExecutingAssembly());
                services.AddTransient<IStorageService, FileStorageService>();
-               services.AddSingleton<IAuthorizationHandler, AdminRoleHandler>();
+               
           }
 
           // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -148,11 +145,7 @@ namespace EcommerceShop.BackEnd
                }
 
                app.UseHttpsRedirection();
-               app.UseCors(option => { option
-                   .AllowAnyHeader()
-                   .AllowAnyMethod()
-                   .AllowCredentials()
-                   .SetIsOriginAllowed(host => true);});
+               app.UseCors(MyAllowSpecificOrigins);
                app.UseStaticFiles();
                app.UseRouting();
                app.UseIdentityServer();

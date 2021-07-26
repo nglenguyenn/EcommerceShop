@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
@@ -6,6 +6,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { AuthData } from "../../data/authData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-  },    
+  },
   linkTo: {
     textDecoration: "none",
     color: "#000",
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function MenuTop() {
+  const { isAuth } = useContext(AuthData);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -75,9 +77,22 @@ export default function MenuTop() {
               Admin Ecommerce Shop
             </Link>
           </Typography>
-          <Link to="" className={classes.linkHome}>
+          
+          {isAuth ? (
+            <Link 
+            className={classes.linkHome}
+              to="/logout"
+            >
               Logout
             </Link>
+          ) : (
+            <Link
+            className={classes.linkHome}
+              to="/login"
+            >
+              Login
+            </Link>
+          )}
           <IconButton
             edge="end"
             color="inherit"
