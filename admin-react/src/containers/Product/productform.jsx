@@ -9,6 +9,7 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import { ProductData } from "../../data/productData";
+import { Img } from "../../utils/image";
 
 const ProductForm = (props) => {
   let history = useHistory();
@@ -105,8 +106,9 @@ const ProductForm = (props) => {
                 }}
               />
             </InputGroup>
+            <Img file={formik.values.images} />
             <br />
-            <div className="text-center">
+            <div className="text-center m-3">
               <Button color="secondary" className="mr-2" type="button">
                 <Link to="/product" className="text-decoration-none text-white">
                   Close

@@ -10,6 +10,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { CategoryData } from "../../data/categoryData";
+import { Img } from "../../utils/image";
 
 const CategoryForm = (props) => {
   let history = useHistory();
@@ -81,6 +82,7 @@ const CategoryForm = (props) => {
                 }}
               />
             </InputGroup>
+            <Img file={formik.values.images} />
             <br />
             <div className="text-center">
               <Button color="secondary" className="mr-2" type="button">

@@ -4,7 +4,6 @@ using EcommerceShop.Shared.DTO;
 using EcommerceShop.Test.Mappings;
 using EcommerceShop.Test.Storage;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;

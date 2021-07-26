@@ -117,7 +117,7 @@ namespace EcommerceShop.BackEnd.Controllers
         [HttpPut("{id}")]
         [AllowAnonymous]
         //[Authorize("ADMIN_ROLE_POLICY")]
-        public async Task<ActionResult<ProductDto>> PutProduct(string id,[FromForm] ProductUpdateRequest productUpdateRequest)
+        public async Task<ActionResult<ProductDto>> PutProduct(string id, [FromForm] ProductUpdateRequest productUpdateRequest)
         {
             var product = await _context.Products.FindAsync(id);
 

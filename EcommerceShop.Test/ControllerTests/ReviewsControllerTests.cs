@@ -2,7 +2,6 @@
 using EcommerceShop.BackEnd.Models;
 using EcommerceShop.Shared.DTO;
 using EcommerceShop.Test.Mappings;
-using EcommerceShop.Test.Storage;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
