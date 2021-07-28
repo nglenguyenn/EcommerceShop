@@ -8,10 +8,6 @@ const Home = () => {
         <h1 className="display-3">Welcome to Admin Page for Ecommerce Shop!</h1>
         <p className="lead pt-1">Assginment The Rookie</p>
         <hr className="my-2" />
-        <p></p>
-        <p className="lead">
-          <Button color="primary">Swagger</Button>
-        </p>
       </Jumbotron>
     </div>
   );

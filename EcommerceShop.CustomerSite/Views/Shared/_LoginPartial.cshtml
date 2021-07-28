@@ -2,7 +2,7 @@
 @if (User.Identity.IsAuthenticated)
 {
     <li class="nav-item">
-        <span class="navbar-text text-dark">Hello <a class="text-dark" asp-controller="Account" asp-action="MyProfile">@User.Identity.Name</a></span>
+        <span class="navbar-text text-dark"><a class="text-dark" asp-controller="Account" asp-action="MyProfile">@User.Identity.Name</a></span>
     </li>
     <li><a href="#"><i class="ion-android-cart"></i> Cart </a></li>
     <li><a asp-controller="Account" asp-action="SignOut"> <i class="ion-android-exit"></i> Logout </a></li>
