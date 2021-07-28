@@ -5,16 +5,17 @@
 
 @{
     ViewData["Title"] = "My profile";
+    var backendUrl = Configuration.GetServiceUri("backend");
 }
 
-<h2><a href="https://localhost:44354/Identity/Account/Manage">My Account</a></h2>
+<h2><a href="@backendUrl/Identity/Account/Manage">My Account</a></h2>
 <br />
 <br />
 
 <h2>Claims</h2>
 
 <dl>
-    @foreach (var claim in Model.AuthenticateResult.Principal.Claims)
+    @foreach (var claim in User.Claims)
     {
         <dt>@claim.Type</dt>
         <dd>@claim.Value</dd>
@@ -24,7 +25,7 @@
 <h2>Properties</h2>
 
 <dl>
-    @foreach (var prop in Model.AuthenticateResult.Properties.Items)
+    @foreach (var prop in (await Context.AuthenticateAsync()).Properties.Items)
     {
         <dt>@prop.Key</dt>
         <dd>@prop.Value</dd>

@@ -27,4 +27,8 @@
     <ProjectReference Include="..\EcommerceShop.Shared\EcommerceShop.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extension\" />
+  </ItemGroup>
+
 </Project>

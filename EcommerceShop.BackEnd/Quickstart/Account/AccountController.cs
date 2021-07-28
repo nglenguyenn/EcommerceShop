@@ -1,3 +1,7 @@
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+
 using EcommerceShop.BackEnd.Models;
 using IdentityModel;
 using IdentityServer4;
@@ -171,16 +175,10 @@ namespace IdentityServerHost.Quickstart.UI
             return View(vm);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Logout(string logoutId)
-        //{
-        //    await _signInManager.SignOutAsync();
 
-        //    var logoutRequest = await _interaction.GetLogoutContextAsync(logoutId);
-
-        //    return Redirect(logoutRequest.PostLogoutRedirectUri);
-        //}
-
+        /// <summary>
+        /// Show logout page
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Logout(string logoutId)
         {
