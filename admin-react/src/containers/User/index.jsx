@@ -28,7 +28,7 @@ const User = () => {
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>UserName</th>
+                        <th>Full Name</th>
                         <th>Email</th>
                     </tr>
                 </thead>
@@ -37,7 +37,7 @@ const User = () => {
                         userList && userList.map(user =>
                             <tr key={user.id}>
                                 <td>{user.id}</td>
-                                <td>{user.userName}</td>
+                                <td>{user.fullName}</td>
                                 <td>{user.email}</td>
                             </tr>
                         )}

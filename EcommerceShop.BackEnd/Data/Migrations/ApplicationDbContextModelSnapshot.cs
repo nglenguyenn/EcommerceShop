@@ -108,7 +108,7 @@ namespace EcommerceShop.BackEnd.Migrations
                         {
                             ProductId = "1",
                             CategoryId = "1",
-                            CreatedDate = new DateTime(2021, 7, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Iphone 12 pro max",
                             Images = "Iphone12promax .jpg",
                             Name = "Iphone 12 pro max",
@@ -120,7 +120,7 @@ namespace EcommerceShop.BackEnd.Migrations
                         {
                             ProductId = "2",
                             CategoryId = "1",
-                            CreatedDate = new DateTime(2021, 7, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Iphone 11 pro max",
                             Images = "Iphone11promax .jpg",
                             Name = "Iphone 11 pro max",
@@ -132,7 +132,7 @@ namespace EcommerceShop.BackEnd.Migrations
                         {
                             ProductId = "3",
                             CategoryId = "2",
-                            CreatedDate = new DateTime(2021, 7, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Test Product 3",
                             Images = "samsungs21.jpg",
                             Name = "Samsung Galaxy S21 5G",
@@ -144,7 +144,7 @@ namespace EcommerceShop.BackEnd.Migrations
                         {
                             ProductId = "4",
                             CategoryId = "2",
-                            CreatedDate = new DateTime(2021, 7, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Samsung Galaxy Note 20",
                             Images = "samsungnote20.jpg",
                             Name = "Samsung Galaxy Note 20",
@@ -156,7 +156,7 @@ namespace EcommerceShop.BackEnd.Migrations
                         {
                             ProductId = "5",
                             CategoryId = "3",
-                            CreatedDate = new DateTime(2021, 7, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Sony Xperia 1 II",
                             Images = "sony1ii.png",
                             Name = "Sony Xperia 1 II",
@@ -168,7 +168,7 @@ namespace EcommerceShop.BackEnd.Migrations
                         {
                             ProductId = "6",
                             CategoryId = "4",
-                            CreatedDate = new DateTime(2021, 7, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedDate = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Xiaomi Redmi Note 10 pro",
                             Images = "xiaomi-redmi-note-10-pro_2_2.png",
                             Name = "Xiaomi Redmi Note 10 pro",

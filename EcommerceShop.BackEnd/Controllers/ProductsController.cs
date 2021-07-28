@@ -49,6 +49,7 @@ namespace EcommerceShop.BackEnd.Controllers
 
             return productdto;
         }
+
         [HttpGet("GetProductById/{id}")]
         [AllowAnonymous]
         public async Task<ActionResult<ProductDto>> GetProductById(string id)
