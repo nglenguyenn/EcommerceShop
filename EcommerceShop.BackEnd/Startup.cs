@@ -94,12 +94,13 @@ namespace EcommerceShop.BackEnd
                                   builder =>
                                   {
                                       builder.WithOrigins("http://localhost:3000")
-                                                                    .AllowAnyHeader()
-                                                              .AllowAnyMethod();
+                                             .AllowAnyHeader()
+                                             .AllowAnyMethod();
                                   });
             });
 
             services.AddControllersWithViews();
+
 
             services.AddSwaggerGen(c =>
             {
