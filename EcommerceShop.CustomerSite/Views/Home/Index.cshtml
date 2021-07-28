@@ -18,7 +18,7 @@
                                     <br><br>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-3 align-center">
-                                    <img src="~/Template/assets/img/carousel/shopping.png" alt="Iphone" />
+                                    <img src="~/Template/assets/img/ip12.jpg" alt="Iphone" />
                                 </div>
                             </div>
                         </div>
@@ -33,13 +33,11 @@
                     <div class="inside-content">
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-8 col-sm-offset-2 align-center">
-                                    <img src="~/Template/assets/img/carousel/xiaomi (1).png" alt="xiaomi" />
-                                </div>
                                 <div class="col-sm-12 align-center">
-                                    <h1>New Xiaomi Phone </h1>
-                                    <p>This phone for you</p>
                                     <a href="./catalog/"> Xiaomi></a>
+                                </div>
+                                <div class="col-sm-8 col-sm-offset-2 align-center">
+                                    <img src="~/Template/assets/img/fold2.jpg" alt="xiaomi" />
                                 </div>
                             </div>
                         </div>
@@ -78,8 +76,8 @@
         </div>
     </div>
     <ul class="markers">
-        <li data-marker="1"><img src="~/Template/assets/img/carousel/shopping.png" alt="Background" /></li>
-        <li data-marker="2" class="active"><img src="~/Template/assets/img/carousel/xiaomi (1).png" alt="Background" /></li>
+        <li data-marker="1"><img src="~/Template/assets/img/ip12.jpg" alt="Background" /></li>
+        <li data-marker="2" class="active"><img src="~/Template/assets/img/fold2.jpg" alt="Background" /></li>
         <li data-marker="3"><img src="~/Template/assets/img/carousel/shopping (1).png" alt="Background" /></li>
     </ul>
 </div>
@@ -91,7 +89,7 @@
         {
             <div class="col-sm-3 align-center">
                 <a asp-controller="Product" asp-action="Index" asp-route-id="@cate.CategoryId">
-                    <img src="@cate.Images" alt="Blog" class="image" style="height: 250px; width: 250px" /></a>           
+                    <img src="@cate.Images" alt="Blog" class="image" style="height: 200px; width: 200px" /></a>           
                 <br><br>
 
                 <a asp-controller="Product" asp-action="Index" asp-route-id="@cate.CategoryId">@cate.NameCategory</a>
