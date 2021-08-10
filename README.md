@@ -1,5 +1,5 @@
 # EcommerceShop
-.Net Assignment for The Rookies - NashTech
+.Net Assignment 
 ## Building an Ecommerce WebSite :
 ### - Customer site (storefront): Using ASP.NET (Core) MVC pattern for this site.
       •	Home page: category menu, features products
